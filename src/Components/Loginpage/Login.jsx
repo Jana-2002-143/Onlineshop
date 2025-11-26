@@ -33,7 +33,7 @@ function Login() {
       const response = await fetch("https://onlineshop-backend-vvjx.onrender.com/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body:JSON.stringify({Name:uservalue,Password:userpassvalue}),
+        body:JSON.stringify({name:uservalue,password:userpassvalue}),
       });
       if (response.ok) {
         const data = await response.json();

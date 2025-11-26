@@ -74,10 +74,10 @@ function Signup() {
     }
 
     const datalist={
-      Name:uservalue,
-      Password:userpassvalue,
-      Email:useremailvalue,
-      Phoneno:userphonevalue
+      name:uservalue,
+      password:userpassvalue,
+      email:useremailvalue,
+      phoneno:userphonevalue
     }
 
     try {
