@@ -74,10 +74,10 @@ function Signup() {
     }
 
     const datalist={
-      username:uservalue,
-      userpassword:userpassvalue,
-      useremail:useremailvalue,
-      userphoneno:userphonevalue
+      Name:uservalue,
+      Password:userpassvalue,
+      Email:useremailvalue,
+      Phoneno:userphonevalue
     }
 
     try {
@@ -88,14 +88,14 @@ function Signup() {
       });
 
       if(response.ok){
-        const data=await res.json();
-        localStorage.setItem("username",data.username);
-        localStorage.setItem("useremail",data.useremail);
-        localStorage.setItem("userphoneno",data.userphoneno);
+        const data=await response.json();
+        localStorage.setItem("username",data.name);
+        localStorage.setItem("useremail",data.email);
+        localStorage.setItem("userphoneno",data.phoneno);
 
         alert("Account Created");
       }else {
-        const errorMsg = await res.text();
+        const errorMsg = await response.text();
         alert("Signup Failed: " + errorMsg);
       }
     } catch (error) {
