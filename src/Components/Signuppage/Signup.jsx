@@ -81,7 +81,7 @@ function Signup() {
     }
 
     try {
-      const response=await fetch("http://localhost:8080/api/signup",{
+      const response=await fetch("https://onlineshop-backend-vvjx.onrender.com/api/signup",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(datalist),
