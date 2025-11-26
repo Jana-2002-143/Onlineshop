@@ -3,69 +3,81 @@ import "./Signup.css";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [uservalue, setUservalue] = useState("");
   const [user, setUser] = useState(false);
+
   const [userpassvalue, setUserpassvalue] = useState("");
   const [userpass, setUserpass] = useState(false);
+
   const [userrepassvalue, setUserrepassvalue] = useState("");
   const [userrepass, setUserrepass] = useState(false);
+
   const [userphonevalue, setUserphonevalue] = useState("");
   const [userphone, setUserphone] = useState(false);
+
   const [useremailvalue, setUseremailvalue] = useState("");
   const [useremail, setUseremail] = useState(false);
 
   const username = (e) => {
     setUservalue(e.target.value);
-    if (e.target.value === "") {
-      setUser(true);
-    } else {
-      setUser(false);
-    }
+    setUser(e.target.value === "");
   };
+
   const userpassword = (e) => {
     setUserpassvalue(e.target.value);
-    if (e.target.value === "") {
-      setUserpass(true);
-    } else {
-      setUserpass(false);
-    }
+    setUserpass(e.target.value === "");
   };
+
   const userrepassword = (e) => {
     setUserrepassvalue(e.target.value);
-    if (e.target.value === "") {
-      setUserrepass(true);
-    } else {
-      setUserrepass(false);
-    }
+    setUserrepass(e.target.value === "");
   };
+
   const userphoneno = (e) => {
     setUserphonevalue(e.target.value);
-    if (e.target.value === "") {
-      setUserphone(true);
-    } else {
-      setUserphone(false);
-    }
+    setUserphone(e.target.value === "");
   };
+
   const useremailid = (e) => {
     setUseremailvalue(e.target.value);
-    if (e.target.value === "") {
-      setUseremail(true);
-    } else {
-      setUseremail(false);
-    }
+    setUseremail(e.target.value === "");
   };
 
   const signupbtn = async (e) => {
     e.preventDefault();
-    if (uservalue == "") setUser(true);
-    if (userpassvalue == "") setUserpass(true);
-    if (userrepassvalue == "") setUserrepass(true);
-    if (useremailvalue == "") setUseremail(true);
-    if (userphonevalue == "") setUserphone(true);
-    else if (!/^\d+$/.test(userphonevalue)) {
-      return "Phone must contain only numbers";
-    } else if (userphonevalue.length !== 10) {
-      return "Phone must be exactly 10 digits";
+
+    if (uservalue === "") setUser(true);
+    if (userpassvalue === "") setUserpass(true);
+    if (userrepassvalue === "") setUserrepass(true);
+    if (useremailvalue === "") setUseremail(true);
+    if (userphonevalue === "") setUserphone(true);
+
+    if (
+      !uservalue ||
+      !userpassvalue ||
+      !userrepassvalue ||
+      !useremailvalue ||
+      !userphonevalue
+    ) {
+      alert("All fields are required");
+      return;
+    }
+
+    if (userpassvalue !== userrepassvalue) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    if (!/^\d+$/.test(userphonevalue)) {
+      alert("Phone must contain only numbers");
+      return;
+    }
+
+    if (userphonevalue.length !== 10) {
+      alert("Phone must be exactly 10 digits");
+      return;
     }
 
     const datalist = {
@@ -87,12 +99,13 @@ function Signup() {
 
       if (response.ok) {
         const data = await response.json();
+
         localStorage.setItem("username", data.name);
         localStorage.setItem("useremail", data.email);
         localStorage.setItem("userphoneno", data.phoneno);
 
-        alert("Account Created");
-        useNavigate("/Login");
+        alert("Account Created Successfully");
+        navigate("/Login");
       } else {
         const errorMsg = await response.text();
         alert("Signup Failed: " + errorMsg);
@@ -101,59 +114,48 @@ function Signup() {
       alert("Server not reachable");
     }
   };
+
   return (
     <>
       <h1>Welcome to Purchase first Product</h1>
+
       <div className="Signupcontainer">
-        <form action="onSubmit" onSubmit={signupbtn}>
-          <label htmlFor="userinput1">UserName</label>
-          <input
-            type="text"
-            onChange={username}
-            placeholder="User Name"
-            id="userinput1"
-          />
+        <form onSubmit={signupbtn}>
+          <label>UserName</label>
+          <input type="text" onChange={username} placeholder="User Name" />
           {user && <p className="inputempty">Please Enter Your UserName</p>}
-          <label htmlFor="userinput2">Password</label>
-          <input
-            type="password"
-            onChange={userpassword}
-            placeholder="Pasword"
-            id="userinput2"
-          />
+
+          <label>Password</label>
+          <input type="password" onChange={userpassword} placeholder="Password" />
           {userpass && <p className="inputempty">Please Enter Your Password</p>}
-          <label htmlFor="userinput3">Re Password</label>
+
+          <label>Re Password</label>
           <input
             type="password"
             onChange={userrepassword}
-            placeholder=" Retype Password"
-            id="userinput3"
+            placeholder="Retype Password"
           />
-          {userrepass && (
-            <p className="inputempty">Please Enter Your Password</p>
-          )}
-          <label htmlFor="userinput4">Phoneno</label>
+          {userrepass && <p className="inputempty">Please Enter Re-Password</p>}
+
+          <label>Phone Number</label>
           <input
             type="number"
             onChange={userphoneno}
             placeholder="Phone Number"
-            id="userinput4"
           />
           {userphone && (
-            <p className="inputempty">Please Enter your Phone number</p>
+            <p className="inputempty">Please Enter Your Phone Number</p>
           )}
-          <label htmlFor="userinput5">Email</label>
-          <input
-            type="Email"
-            onChange={useremailid}
-            placeholder="Email"
-            id="userinput5"
-          />
+
+          <label>Email</label>
+          <input type="email" onChange={useremailid} placeholder="Email" />
           {useremail && <p className="inputempty">Please Enter Your Email</p>}
+
           <button>Signup</button>
         </form>
       </div>
     </>
   );
 }
+
 export default Signup;
