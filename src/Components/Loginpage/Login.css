@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background + Centering */
+body {
+    text-align: center;
+    margin-top: 80px;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Fade-in animation */
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Title */
+h1 {
+    color: blueviolet;
+    margin-bottom: 30px;
+    font-family: "Poppins", sans-serif;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Login Container */
+.Logincontainer {
+    background: white;
+    padding: 25px;
+    width: 300px;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 1.4s ease-in-out;
+}
+
+/* Spacing */
+.Logincontainer div {
+    padding: 10px;
+    text-align: left;
+}
+
+.Logincontainer label {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    display: block;
+}
+
+/* Inputs */
+.Logincontainer input {
+    padding: 8px;
+    border-radius: 10px;
+    border: 1.5px solid #999;
+    width: 220px;
+    transition: 0.3s ease;
+    font-size: 14px;
+}
+
+/* Input focus animation */
+.Logincontainer input:focus {
+    border-color: blueviolet;
+    box-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
+    transform: scale(1.05);
+    outline: none;
+}
+
+/* Button */
+.Logincontainer button {
+    color: white;
+    background-color: blue;
+    border-radius: 10px;
+    border: none;
+    width: 100px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+/* Button hover animation */
+.Logincontainer button:hover {
+    cursor: pointer;
+    background-color: rgb(0, 0, 190);
+    transform: scale(1.08);
+}
+
+/* Button click animation */
+.Logincontainer button:active {
+    transform: scale(0.92);
+}
+
+/* Error message */
+.Logincontainer p {
+    color: red;
+    font-size: 14px;
+    font-weight: 500;
+    animation: shake 0.3s ease-in-out;
+}
+.otherpage{
+    padding: 10px;
+    color: blue;
+    text-decoration: none;
+    display: block;
+    margin-left: 10px;
+}
+
+/* Fade-in animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Error shake animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
