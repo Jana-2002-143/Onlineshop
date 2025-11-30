@@ -1,0 +1,156 @@
+/* Main container holding all products */
+.productscontainer {
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+
+/* Each product card */
+.oneitem {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  padding-bottom: 15px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.oneitem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Image area */
+.imgcontainer {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+}
+
+.imgcontainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s ease;
+}
+
+.oneitem:hover img {
+  scale: 1.05;
+}
+
+/* Product name */
+.producttitle {
+  font-size: 20px;
+  margin-top: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Price */
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e63946;
+  margin-top: 5px;
+}
+
+/* Filter bar fix */
+.filter {
+  text-align: center;
+  width: 100%;
+  margin-top: 50px;
+}
+
+/* Buy link button */
+.oneitem a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  background: #007bff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.oneitem a:hover {
+  background: #0056c7;
+}
+
+/* Payment option box */
+.paymentoptions {
+  margin-top: 12px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons inside payment options */
+.paymentoptions button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* GPay button */
+.gpay-btn {
+  background: #000;
+  color: white;
+}
+
+.gpay-btn:hover {
+  background: #333;
+}
+
+/* PhonePe button */
+.phonepe-btn {
+  background: #7b2cbf;
+  color: white;
+}
+
+.phonepe-btn:hover {
+  background: #5a1992;
+}
+
+/* Mobile support */
+@media (max-width: 480px) {
+  .imgcontainer {
+    height: 200px;
+  }
+
+  .producttitle {
+    font-size: 18px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .paymentoptions button {
+    font-size: 14px;
+    padding: 9px;
+  }
+}

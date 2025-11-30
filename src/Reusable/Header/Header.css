@@ -1,0 +1,146 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header Container */
+.headercontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  width: 100%;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
+  font-family: Arial, sans-serif;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.logo {
+  color: #ffffff;
+  font-size: 28px;
+  padding-top: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Navigation */
+.navsection {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap; 
+}
+
+/* Navigation Items */
+.navsection p {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: 0.25s ease-in-out;
+}
+
+.navsection p:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Dropdown */
+.navsection select {
+  padding: 5px 8px;
+  width: 100px;
+  height: 32px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+
+  background: white;
+  color: #6a11cb;
+  font-size: 15px;
+  font-weight: 500;
+
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  transition: 0.2s ease;
+}
+
+.navsection select:hover {
+  transform: scale(1.07);
+}
+
+/* Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .logo {
+    font-size: 26px;
+  }
+
+  .navsection {
+    gap: 20px;
+  }
+}
+
+/* Large Phones (max-width: 768px) */
+@media (max-width: 768px) {
+  .headercontainer {
+    padding: 15px 20px;
+  }
+
+  .logo {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .navsection {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Small Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .headercontainer {
+    flex-direction: column;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .navsection {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .navsection p,
+  .navsection select {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Extra Small Devices (max-width: 360px) */
+@media (max-width: 360px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .navsection p{
+    font-size: 15px;
+  }
+
+  .navsection select {
+    font-size: 14px;
+    width: 100%;
+  }
+}
+

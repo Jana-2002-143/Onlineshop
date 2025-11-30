@@ -117,7 +117,8 @@ function Signup() {
 
   return (
     <>
-      <h1>Welcome to Purchase first Product</h1>
+      <div className="loginform">
+        <h1>Welcome to Purchase first Product</h1>
 
       <div className="Signupcontainer">
         <form onSubmit={signupbtn}>
@@ -153,6 +154,7 @@ function Signup() {
 
           <button>Signup</button>
         </form>
+      </div>
       </div>
     </>
   );

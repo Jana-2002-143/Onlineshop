@@ -4,131 +4,149 @@
     box-sizing: border-box;
 }
 
-/* Background + Centering */
-body {
+/* Main container */
+.loginform {
     text-align: center;
-    margin-top: 80px;
+    padding: 40px 20px;
+    min-height: 100vh;
     background-color: bisque;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
-    /* Fade-in animation */
     animation: fadeIn 1s ease-in-out;
 }
 
 /* Title */
-h1 {
-    font-size: 200%;
+.loginform h1 {
+    font-size: 2rem;
     color: blueviolet;
     margin-bottom: 30px;
     font-family: "Poppins", sans-serif;
     animation: fadeIn 1.2s ease-in-out;
 }
 
-/* Login Container */
+/* Login box */
 .Logincontainer {
     background: white;
+    width: 90%;
+    max-width: 350px;
     padding: 25px;
-    width: 300px;
-    margin:20px;
     border-radius: 15px;
-    text-align: left;
     box-shadow: 0px 5px 20px rgba(0,0,0,0.15);
     animation: fadeIn 1.4s ease-in-out;
 }
 
-/* Spacing */
-.Logincontainer div {
-    padding: 10px;
-    text-align: left;
+/* Input group wrapper */
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
 }
 
+/* Labels */
 .Logincontainer label {
-    padding: 10px;
     font-size: 16px;
     font-weight: 500;
     color: #333;
-    display: block;
+    margin-bottom: 5px;
+    text-align: left;      /* Align left (perfect alignment) */
+    padding-left: 5px;
 }
 
 /* Inputs */
 .Logincontainer input {
-    padding: 8px;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
     border-radius: 10px;
     border: 1.5px solid #999;
-    width: 220px;
-    transition: 0.3s ease;
     font-size: 14px;
+    transition: 0.3s ease;
 }
 
-/* Input focus animation */
+/* Input focus */
 .Logincontainer input:focus {
     border-color: blueviolet;
     box-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
-    transform: scale(1.05);
+    transform: scale(1.03);
     outline: none;
 }
 
 /* Button */
 .Logincontainer button {
+    width: 100%;
+    padding: 12px;
+    background-color: royalblue;
     color: white;
-    background-color: blue;
     border-radius: 10px;
     border: none;
-    width: 100px;
-    padding: 10px;
-    margin-top: 10px;
-    margin-left: 10px;
-    font-size: 15px;
-    transition: 0.3s ease;
+    margin-top: 20px;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
-/* Button hover animation */
 .Logincontainer button:hover {
+    background-color: rgb(0, 0, 200);
+    transform: scale(1.05);
     cursor: pointer;
-    background-color: rgb(0, 0, 190);
-    transform: scale(1.08);
 }
 
-/* Button click animation */
 .Logincontainer button:active {
     transform: scale(0.92);
 }
 
-/* Error message */
+/* Error Message */
 .Logincontainer p {
     color: red;
     font-size: 14px;
     font-weight: 500;
+    text-align: start;
+    margin-top: 3px;
     animation: shake 0.3s ease-in-out;
 }
-.otherpage{
-    padding: 10px;
-    color: blue;
-    text-decoration: none;
+
+/* New User Link */
+.otherpage {
     display: block;
-    margin-left: 10px;
+    margin-top: 10px;
+    color: blue;
+    font-size: 14px;
+    text-decoration: none;
 }
 
-/* Fade-in animation keyframes */
+.otherpage:hover {
+    text-decoration: underline;
+}
+
+/* Fade animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Error shake animation */
+/* Error shake */
 @keyframes shake {
-    0% { transform: translateX(0); }
-    20% { transform: translateX(-4px); }
-    40% { transform: translateX(4px); }
-    60% { transform: translateX(-4px); }
-    80% { transform: translateX(4px); }
-    100% { transform: translateX(0); }
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .loginform h1 {
+        font-size: 1.6rem;
+    }
+
+    .Logincontainer {
+        padding: 20px;
+    }
+
+    .Logincontainer button {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
