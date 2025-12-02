@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../Reusable/Header/Header";
 import Searchinput from "../../Reusable/Search/Searchinput";
-import Products from "../../Reusable/Products/Productspage";
+import Productspage from "../../Reusable/Products/Productspage";
 import Order from "../Orderpage/Order";
 
-function Laptaps({ searchText = "" }) {
+function Laptaps({ searchText = "", sort = "" }) {
   const [buyingIndex, setBuyingIndex] = useState(null);
-  const [selectedItem, setSelectedItem] = useState({});
+  const [selectedItem, setSelectedItem] = useState("");
   const laptaps = [
     {
       item: "Apple MacBook Pro 14 Inch Space Grey",
@@ -59,30 +60,69 @@ function Laptaps({ searchText = "" }) {
       url: "data:image/jpeg;base64,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",
     },
   ];
+  const navigate = useNavigate();
 
   const filtered = laptaps.filter((w) => {
     return w.item.toLowerCase().includes(searchText.toLowerCase().trim());
   });
+  const sorting = [...filtered].sort((a, b) => {
+    const priceA = Number(a.money.replace("₹", ""));
+    const priceB = Number(b.money.replace("₹", ""));
 
+    if (sort === "asc") return priceA - priceB;
+    if (sort === "desc") return priceB - priceA;
+    return 0;
+  });
   const purchase = (index) => {
     setBuyingIndex(index);
   };
-  const Orderedgpay = (laptaps, index) => {
-    setSelectedItem(laptaps,index);
-    console.log(selectedItem);
-    alert("Ordered Successfully at Gpay");
-    return <Order selectedItem={selectedItem} />;
+  const Orderedgpay = async (laptaps) => {
+    const data = {
+      productname: laptaps.item,
+      price: laptaps.money,
+      url: laptaps.url,
+      debited: "Gpay",
+    };
+    try {
+      const response = await fetch("https://onlineshop-backend-vvjx.onrender.com/api/laptaps", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log("Order saved:", result);
+      alert("Ordered Successfully at Gpay");
+      navigate("/order", { state: result });
+    } catch (error) {
+      alert("Backend not reach");
+    }
   };
-  const Orderedphonepay = (laptaps, index) => {
-    setSelectedItem(laptaps);
-    alert("Ordered Successfully at Phonepay");
-    return <Order selectedItem={selectedItem} />;
+  const Orderedphonepay = async (laptaps) => {
+    const data = {
+      productname: laptaps.item,
+      price: laptaps.money,
+      url: laptaps.url,
+      debited: "Phonepay",
+    };
+    try {
+      const response = await fetch("https://onlineshop-backend-vvjx.onrender.com/api/laptaps", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log("Order saved:", result);
+      alert("Ordered Successfully at Phonepay");
+      navigate("/order", { state: result });
+    } catch (error) {
+      alert("Backend not reach");
+    }
   };
 
   return (
     <>
       <div className="productscontainer" id="orders">
-        {filtered.map((laptaps, index) => (
+        {sorting.map((laptaps, index) => (
           <div className="oneitem" key={index}>
             <div className="imgcontainer">
               <img src={laptaps.url} alt={laptaps.item} />
@@ -101,21 +141,19 @@ function Laptaps({ searchText = "" }) {
             {buyingIndex === index && (
               <div className="paymentoptions">
                 <button
-                  type="submit"
+                  type="button"
                   className="gpay-btn"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    Orderedgpay(laptaps, index);
+                  onClick={() => {
+                    Orderedgpay(laptaps);
                   }}
                 >
                   GPay
                 </button>
                 <button
-                  type="submit"
+                  type="button"
                   className="gpay-btn"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    Orderedphonepay(laptaps, index);
+                  onClick={() => {
+                    Orderedphonepay(laptaps);
                   }}
                 >
                   PhonePay

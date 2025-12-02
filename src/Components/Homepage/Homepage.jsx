@@ -5,6 +5,7 @@ import Watches from "../Watches/Watches";
 import Phones from "../Phones/Phones";
 import Laptaps from "../Laptaps/Laptaps";
 import Order from "../Orderpage/Order";
+import About from "../About/About";
 import "./Homepage.css";
 import { useState } from "react";
 

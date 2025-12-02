@@ -3,27 +3,39 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
-  const [uservalue, setUservalue] = useState("");
-  const [user, setUser] = useState(false);
-  const [userpassvalue, setUserpassvalue] = useState("");
-  const [userpass, setUserpass] = useState(false);
+  const [usernameValue, setUsernameValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+
+  const [usernameError, setUsernameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const navigate = useNavigate();
 
-  const username = (e) => {
-    setUservalue(e.target.value);
-    setUser(e.target.value === "");
+  const handleUsername = (e) => {
+    setUsernameValue(e.target.value);
+    setUsernameError(e.target.value.trim() === "");
   };
 
-  const userpassword = (e) => {
-    setUserpassvalue(e.target.value);
-    setUserpass(e.target.value === "");
+  const handlePassword = (e) => {
+    setPasswordValue(e.target.value);
+    setPasswordError(e.target.value.trim() === "");
   };
 
-  const funloginbtn = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (uservalue === "") setUser(true);
-    if (userpassvalue === "") setUserpass(true);
+    let valid = true;
+
+    if (!usernameValue.trim()) {
+      setUsernameError(true);
+      valid = false;
+    }
+    if (!passwordValue.trim()) {
+      setPasswordError(true);
+      valid = false;
+    }
+
+    if (!valid) return;
 
     try {
       const response = await fetch(
@@ -31,11 +43,21 @@ function Login() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: uservalue, password: userpassvalue }),
+          body: JSON.stringify({
+            name: usernameValue,
+            password: passwordValue,
+          }),
         }
       );
 
       if (response.ok) {
+        const data = await response.json();
+
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.username);
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("phone", data.phone);
+
         alert("Login Successful!");
         navigate("/Homepage");
       } else {
@@ -47,45 +69,45 @@ function Login() {
   };
 
   return (
-    <>
-      <div className="loginform">
-        <h1>Welcome To Buy Product</h1>
+    <div className="loginform">
+      <h1>Welcome To Buy Product</h1>
 
-        <div className="Logincontainer">
-          <form onSubmit={funloginbtn}>
-            <div className="inputGroup">
-              <label htmlFor="Userinput">User Name</label>
-              <input
-                type="text"
-                placeholder="User Name"
-                id="Userinput"
-                onChange={username}
-              />
-              {user && <p className="inputempty">Please enter the name</p>}
-            </div>
+      <div className="Logincontainer">
+        <form onSubmit={handleLogin}>
+          <div className="inputGroup">
+            <label htmlFor="Userinput">User Name</label>
+            <input
+              type="text"
+              placeholder="User Name"
+              id="Userinput"
+              onChange={handleUsername}
+            />
+            {usernameError && (
+              <p className="inputempty">Please enter the name</p>
+            )}
+          </div>
 
-            <div className="inputGroup">
-              <label htmlFor="Userinput1">Password</label>
-              <input
-                type="password"
-                placeholder="Password"
-                id="Userinput1"
-                onChange={userpassword}
-              />
-              {userpass && (
-                <p className="inputempty">Please enter the Password</p>
-              )}
-            </div>
+          <div className="inputGroup">
+            <label htmlFor="Userinput1">Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              id="Userinput1"
+              onChange={handlePassword}
+            />
+            {passwordError && (
+              <p className="inputempty">Please enter the Password</p>
+            )}
+          </div>
 
-            <button>Login</button>
+          <button>Login</button>
 
-            <Link to="/Signup" className="otherpage">
-              New User
-            </Link>
-          </form>
-        </div>
+          <Link to="/Signup" className="otherpage">
+            New User
+          </Link>
+        </form>
       </div>
-    </>
+    </div>
   );
 }
 

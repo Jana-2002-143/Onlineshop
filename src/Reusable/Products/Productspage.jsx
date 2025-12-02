@@ -8,10 +8,11 @@ import Laptaps from "../../Components/Laptaps/Laptaps";
 import Order from "../../Components/Orderpage/Order";
 import { useState } from "react";
 
-function Productspage() {
+function Productspage({selectedItem=""}) {
   const [searchText, setSearchText] = useState("");
   const [sort, setSort] = useState("");
   const { category } = useParams();
+  const ordersss=<Order selectedItem={selectedItem}/>
 
   return (
     <>
@@ -31,7 +32,7 @@ function Productspage() {
         <Phones searchText={searchText} sort={sort} />
       )}
       {category === "Laptaps" && (
-        <Laptaps searchText={searchText} sort={sort} />
+        <Laptaps searchText={searchText} sort={sort}/>
       )}
     </>
   );

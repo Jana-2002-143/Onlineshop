@@ -9,7 +9,9 @@ import Productspage from "./Reusable/Products/Productspage";
 import Phones from "./Components/Phones/Phones";
 import Laptaps from "./Components/Laptaps/Laptaps";
 import Order from "./Components/Orderpage/Order";
+import About from "./Components/About/About";
 import { useState } from "react";
+import ProtectedRoute from "./Security/ProductedRoute";
 
 function App() {
   return (
@@ -18,13 +20,14 @@ function App() {
         <Route path="/" element={<Navigate to="/Login" />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/Homepage" element={<Homepage />} />
-        <Route path="/Productspage/:category" element={<Productspage />} />
-        <Route path="/Dresses" element={<Dresses />} />
-        <Route path="/Watches" element={<Watches />} />
-        <Route path="/Phones" element={<Phones />} />
-        <Route path="/Laptaps" element={<Laptaps />} />
-        <Route path="/Order" element={<Order />} />
+        <Route path="/Homepage" element={ <ProtectedRoute><Homepage /></ProtectedRoute>}/>
+        <Route path="/Productspage/:category" element={<ProtectedRoute><Productspage /></ProtectedRoute>} />
+        <Route path="/Dresses" element={<ProtectedRoute><Dresses /></ProtectedRoute>} />
+        <Route path="/Watches" element={<ProtectedRoute><Watches /></ProtectedRoute>} />
+        <Route path="/Phones" element={<ProtectedRoute><Phones /></ProtectedRoute>} />
+        <Route path="/Laptaps" element={<ProtectedRoute><Laptaps /></ProtectedRoute>} />
+        <Route path="/Order" element={<ProtectedRoute><Order /></ProtectedRoute>} />
+        <Route path="/About" element={<ProtectedRoute><About /></ProtectedRoute>} />
       </Routes>
     </>
   );
