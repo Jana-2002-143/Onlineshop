@@ -66,22 +66,6 @@ function Login() {
     } catch (error) {
       alert("Cannot reach backend.");
     }
-    try {
-      const response = await fetch(
-        "https://onlineshop-backend-vvjx.onrender.com/api/login",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const data = await response.json();
-      console.log("GET Response:", data);
-    } catch (error) {
-      console.error("GET Error:", error);
-    }
   };
 
   return (
