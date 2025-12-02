@@ -4,19 +4,23 @@ import { useState } from "react";
 
 function Header() {
   const products = ["Dresses", "Watches", "Phones", "Laptaps"];
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const navigate = useNavigate();
+
   const handleSelect = (e) => {
     const value = e.target.value;
     navigate(`/Productspage/${value}`);
   };
 
-  const logoutUser = () => {
+  const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("useremail");
     localStorage.removeItem("userphoneno");
     navigate("/Login");
   };
+
+  const cancelLogout = () => setShowLogoutConfirm(false);
 
   return (
     <>
@@ -30,7 +34,6 @@ function Header() {
             <option value="" disabled>
               Products
             </option>
-
             {products.map((product) => (
               <option key={product} value={product}>
                 {product}
@@ -40,7 +43,17 @@ function Header() {
 
           <p onClick={() => navigate("/order")}>Orders</p>
           <p onClick={() => navigate("/About")}>About</p>
-          <button onClick={logoutUser}>Logout</button>
+          <button onClick={() => setShowLogoutConfirm(true)}>Logout</button>
+
+          {showLogoutConfirm && (
+            <div className="logout-confirm">
+              <p>Are you sure you want to logout?</p>
+              <div className="logout-buttons">
+                <button onClick={handleLogout}>Yes</button>
+                <button onClick={cancelLogout}>No</button>
+              </div>
+            </div>
+          )}
         </nav>
       </header>
     </>
