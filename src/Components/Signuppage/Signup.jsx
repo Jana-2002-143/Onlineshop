@@ -60,7 +60,7 @@ function Signup() {
     }
 
     const datalist = {
-      name: usernameValue,
+      username: usernameValue,
       password: passwordValue,
       email: emailValue,
       phoneno: phoneValue,
@@ -80,7 +80,7 @@ function Signup() {
         const data = await response.json();
 
         localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.name);
+        localStorage.setItem("username", data.username);
         localStorage.setItem("useremail", data.email);
         localStorage.setItem("userphoneno", data.phoneno);
 
