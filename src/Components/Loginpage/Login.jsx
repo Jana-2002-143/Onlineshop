@@ -52,8 +52,6 @@ function Login() {
             username: usernameValue,
             password: passwordValue,
           }),
-          credentials: "include",
-          mode: "cors",
         }
       );
 
