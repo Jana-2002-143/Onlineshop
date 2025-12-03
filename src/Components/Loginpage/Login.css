@@ -150,3 +150,24 @@
         padding: 10px;
     }
 }
+/* Already have account text + link wrapper */
+.login-extra {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* New User link */
+.login-extra .otherpage {
+    display: inline;
+    color: blueviolet;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.login-extra .otherpage:hover {
+    text-decoration: underline;
+    color: rgb(100, 0, 200);
+}

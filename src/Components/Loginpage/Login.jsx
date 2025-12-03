@@ -108,9 +108,12 @@ function Login() {
             {loadingIndex ? "Login..." : "Login"}
           </button>
 
-          <Link to="/Signup" className="otherpage">
-            New User
-          </Link>
+          <div className="login-extra">
+            Do You Have Already Account?
+            <Link to="/Signup" className="otherpage">
+              New User
+            </Link>
+          </div>
         </form>
       </div>
     </div>
