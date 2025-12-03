@@ -13,7 +13,6 @@ function Header() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("useremail");
     localStorage.removeItem("userphoneno");
