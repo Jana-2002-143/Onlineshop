@@ -23,8 +23,8 @@ function Login() {
   };
 
   const handleLogin = async (e) => {
-    setLoadingIndex(true);
     e.preventDefault();
+    setLoadingIndex(true);
 
     let valid = true;
 
@@ -37,7 +37,10 @@ function Login() {
       valid = false;
     }
 
-    if (!valid) return;
+    if (!valid){
+       setLoadingIndex(false);
+      return;
+    } 
 
     try {
       const response = await fetch(

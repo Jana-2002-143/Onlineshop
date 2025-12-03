@@ -19,8 +19,8 @@ function Signup() {
   const [emailError, setEmailError] = useState(false);
 
   const signupbtn = async (e) => {
-    setLoadingIndex(true);
     e.preventDefault();
+    setLoadingIndex(true);
     let valid = true;
 
     if (!usernameValue.trim()) {
@@ -46,16 +46,19 @@ function Signup() {
 
     if (!valid) {
       alert("All fields are required");
+      setLoadingIndex(false);
       return;
     }
 
     if (passwordValue !== rePasswordValue) {
       alert("Passwords do not match");
+      setLoadingIndex(false);
       return;
     }
 
     if (!/^\d{10}$/.test(phoneValue)) {
       alert("Phone must be exactly 10 digits");
+      setLoadingIndex(false);
       return;
     }
 
