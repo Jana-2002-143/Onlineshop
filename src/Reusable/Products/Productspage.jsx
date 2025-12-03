@@ -31,8 +31,8 @@ function Productspage({selectedItem=""}) {
       {category === "Phones" && (
         <Phones searchText={searchText} sort={sort} />
       )}
-      {category === "Laptaps" && (
-        <Laptaps searchText={searchText} sort={sort}/>
+      {category === "Laptops" && (
+        <Laptops searchText={searchText} sort={sort}/>
       )}
     </>
   );
