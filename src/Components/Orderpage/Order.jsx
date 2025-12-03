@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 function Order() {
   const location = useLocation();
-  const selectedItem = location.state;  // <-- get data passed via navigate()
+  const selectedItem = location.state;
 
   if (!selectedItem) {
     return (
@@ -22,13 +22,12 @@ function Order() {
         <h2>Order Summary</h2>
         <img
           src={selectedItem.url}
-          alt={selectedItem.productname}
+          alt={selectedItem.productsname}
           style={{ width: 120 }}
         />
 
-        <p>{selectedItem.productname}</p>
+        <p>{selectedItem.productsname}</p>
         <p>{selectedItem.price}</p>
-
         <p>{selectedItem.debited}</p>
       </div>
     </>

@@ -10,7 +10,7 @@ function Signup() {
   const [rePasswordValue, setRePasswordValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
-  const [loadingIndex, setLoadingIndex] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -20,7 +20,7 @@ function Signup() {
 
   const signupbtn = async (e) => {
     e.preventDefault();
-    setLoadingIndex(true);
+
     let valid = true;
 
     if (!usernameValue.trim()) {
@@ -46,27 +46,26 @@ function Signup() {
 
     if (!valid) {
       alert("All fields are required");
-      setLoadingIndex(false);
       return;
     }
 
     if (passwordValue !== rePasswordValue) {
       alert("Passwords do not match");
-      setLoadingIndex(false);
       return;
     }
 
     if (!/^\d{10}$/.test(phoneValue)) {
       alert("Phone must be exactly 10 digits");
-      setLoadingIndex(false);
       return;
     }
 
+    setLoading(true);
+
     const datalist = {
-      username: usernameValue,
-      password: passwordValue,
-      email: emailValue,
-      phoneno: phoneValue,
+      username: usernameValue.trim(),
+      password: passwordValue.trim(),
+      email: emailValue.trim(),
+      phoneno: phoneValue.trim(),
     };
 
     try {
@@ -95,58 +94,56 @@ function Signup() {
     } catch (error) {
       alert("Server not reachable");
     } finally {
-      setLoadingIndex(null);
+      setLoading(false);
     }
   };
 
   return (
     <div className="loginform">
-      <h1>Welcome to Purchase First Product</h1>
+      <h1>Welcome to Purchase Your First Product</h1>
 
       <div className="Signupcontainer">
         <form onSubmit={signupbtn}>
-          <label>UserName</label>
+          <label>User Name</label>
           <input
             type="text"
+            value={usernameValue}
             onChange={(e) => {
               setUsernameValue(e.target.value);
               setUsernameError(false);
             }}
             placeholder="User Name"
           />
-          {usernameError && (
-            <p className="inputempty">Please Enter Your UserName</p>
-          )}
+          {usernameError && <p className="inputempty">Please enter your username</p>}
 
           <label>Password</label>
           <input
             type="password"
+            value={passwordValue}
             onChange={(e) => {
               setPasswordValue(e.target.value);
               setPasswordError(false);
             }}
             placeholder="Password"
           />
-          {passwordError && (
-            <p className="inputempty">Please Enter Your Password</p>
-          )}
+          {passwordError && <p className="inputempty">Please enter your password</p>}
 
-          <label>Re Password</label>
+          <label>Re-enter Password</label>
           <input
             type="password"
+            value={rePasswordValue}
             onChange={(e) => {
               setRePasswordValue(e.target.value);
               setRePasswordError(false);
             }}
             placeholder="Retype Password"
           />
-          {rePasswordError && (
-            <p className="inputempty">Please Enter Re-Password</p>
-          )}
+          {rePasswordError && <p className="inputempty">Please re-enter your password</p>}
 
           <label>Phone Number</label>
           <input
             type="text"
+            value={phoneValue}
             maxLength="10"
             onChange={(e) => {
               setPhoneValue(e.target.value);
@@ -154,23 +151,22 @@ function Signup() {
             }}
             placeholder="Phone Number"
           />
-          {phoneError && (
-            <p className="inputempty">Please Enter Your Phone Number</p>
-          )}
+          {phoneError && <p className="inputempty">Please enter your phone number</p>}
 
           <label>Email</label>
           <input
             type="email"
+            value={emailValue}
             onChange={(e) => {
               setEmailValue(e.target.value);
               setEmailError(false);
             }}
             placeholder="Email"
           />
-          {emailError && <p className="inputempty">Please Enter Your Email</p>}
+          {emailError && <p className="inputempty">Please enter your email</p>}
 
-          <button disabled={loadingIndex}>
-            {loadingIndex ? "Signup..." : "Signup"}
+          <button type="submit" disabled={loading}>
+            {loading ? "Signing up..." : "Signup"}
           </button>
         </form>
       </div>

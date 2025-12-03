@@ -1,0 +1,74 @@
+/* Productspage.css */
+
+/* General page styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+/* Container for all products */
+.productspage-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Single product item */
+.oneitem {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.oneitem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Product image */
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Product title */
+.producttitle {
+  font-size: 1.1rem;
+  margin: 10px 0 5px;
+}
+
+/* Price */
+.price {
+  color: green;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Button */
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Filter message */
+.filter {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}

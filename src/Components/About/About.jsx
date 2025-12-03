@@ -5,6 +5,24 @@ import { TbWorld } from "react-icons/tb";
 import { MdEmail } from "react-icons/md";
 
 function About() {
+  const contacts = [
+    {
+      icon: <FaPhone aria-label="Phone" />,
+      value: "+91 9943653771",
+      link: "tel:9943653771",
+    },
+    {
+      icon: <TbWorld aria-label="Website" />,
+      value: "OnlineShopping.netlify.app",
+      link: "https://onlineshopping.netlify.app",
+    },
+    {
+      icon: <MdEmail aria-label="Email" />,
+      value: "janaganjkl930@gmail.com",
+      link: "mailto:janaganjkl930@gmail.com",
+    },
+  ];
+
   return (
     <>
       <Header />
@@ -30,27 +48,18 @@ function About() {
         </ul>
 
         <nav className="footer">
-          <div className="contact-card">
-            <FaPhone className="contact-icon" />
-            <a href="tel:9943653771">9943653771</a>
-          </div>
-
-          <div className="contact-card">
-            <TbWorld className="contact-icon" />
-            <a href="http://localhost:5173/Login" target="_blank">
-              OnlineShopping.netlify.app
-            </a>
-          </div>
-
-          <div className="contact-card">
-            <MdEmail className="contact-icon" />
-            <a href="mailto:janaganjkl930@gmail.com">
-              janaganjkl930@gmail.com
-            </a>
-          </div>
+          {contacts.map((contact, index) => (
+            <div className="contact-card" key={index}>
+              {contact.icon}
+              <a href={contact.link} target="_blank" rel="noopener noreferrer">
+                {contact.value}
+              </a>
+            </div>
+          ))}
         </nav>
       </div>
     </>
   );
 }
+
 export default About;
