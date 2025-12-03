@@ -37,10 +37,10 @@ function Login() {
       valid = false;
     }
 
-    if (!valid){
-       setLoadingIndex(false);
+    if (!valid) {
+      setLoadingIndex(false);
       return;
-    } 
+    }
 
     try {
       const response = await fetch(
@@ -52,6 +52,8 @@ function Login() {
             username: usernameValue,
             password: passwordValue,
           }),
+          credentials: "include",
+          mode: "cors",
         }
       );
 
