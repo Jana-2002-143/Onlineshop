@@ -3,7 +3,7 @@ import "./Header.css";
 import { useState } from "react";
 
 function Header() {
-  const products = ["Dresses", "Watches", "Phones", "Laptaps"];
+  const products = ["Dresses", "Watches", "Phones", "Laptops"];
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const navigate = useNavigate();
 

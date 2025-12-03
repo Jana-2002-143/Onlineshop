@@ -5,6 +5,7 @@ import "./Login.css";
 function Login() {
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [loadingIndex, setLoadingIndex] = useState(null);
 
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -22,6 +23,7 @@ function Login() {
   };
 
   const handleLogin = async (e) => {
+    setLoadingIndex(true);
     e.preventDefault();
 
     let valid = true;
@@ -65,6 +67,8 @@ function Login() {
       }
     } catch (error) {
       alert("Cannot reach backend.");
+    } finally {
+      setLoadingIndex(null);
     }
   };
 
@@ -100,7 +104,9 @@ function Login() {
             )}
           </div>
 
-          <button>Login</button>
+          <button disabled={loadingIndex}>
+            {loadingIndex ? "Login..." : "Login"}
+          </button>
 
           <Link to="/Signup" className="otherpage">
             New User

@@ -6,7 +6,8 @@ import "./Dresses.css";
 import { useNavigate } from "react-router-dom";
 
 function Dresses({ searchText = "", sort = "" }) {
-  const [buyingIndex, setBuyingIndex] = useState(null);
+  const [loadingIndex, setLoadingIndex] = useState(null);
+
   const dresses = [
     {
       item: "Silhouette Evening Gown",
@@ -60,7 +61,7 @@ function Dresses({ searchText = "", sort = "" }) {
       url: "https://cdn.dummyjson.com/product-images/mens-shirts/man-short-sleeve-shirt/2.webp",
     },
   ];
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const filtered = dresses.filter((d) => {
     return d.item.toLowerCase().includes(searchText.toLowerCase());
@@ -73,14 +74,12 @@ function Dresses({ searchText = "", sort = "" }) {
     if (sort === "desc") return priceB - priceA;
     return 0;
   });
-  const purchase = (index) => {
-    setBuyingIndex(index);
-  };
-  const Orderedgpay = async (dresses) => {
+  const purchase = async (item, index) => {
+    setLoadingIndex(index);
     const data = {
-      productname: dresses.item,
-      price: dresses.money,
-      url: dresses.url,
+      productsname: item.item,
+      price: item.money,
+      url: item.url,
       debited: "Gpay",
     };
     try {
@@ -94,78 +93,32 @@ function Dresses({ searchText = "", sort = "" }) {
       );
       const result = await response.json();
       console.log("Order saved:", result);
-      alert("Ordered Successfully at Gpay");
-      navigate("/order", { state: result });
+      alert("Add Successfully");
     } catch (error) {
       alert("Backend not reach");
-    }
-  };
-  const Orderedphonepay = async (dresses) => {
-    const data = {
-      productname: dresses.item,
-      price: dresses.money,
-      url: dresses.url,
-      debited: "Phonepay",
-    };
-    try {
-      const response = await fetch(
-        "https://onlineshop-backend-vvjx.onrender.com/api/dresses",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
-      const result = await response.json();
-      console.log("Order saved:", result);
-      alert("Ordered Successfully at Phonepay");
-      navigate("/order", { state: result });
-    } catch (error) {
-      alert("Backend not reach");
-    }
+    }finally {
+    setLoadingIndex(null);
+  }
   };
 
   return (
     <>
       <div className="productscontainer">
-        {sorting.map((dresses, index) => (
+        {sorting.map((item, index) => (
           <div className="oneitem" key={index}>
             <div className="imgcontainer">
-              <img src={dresses.url} alt={dresses.item} />
+              <img src={item.url} alt={item.item} />
             </div>
-            <h1 className="producttitle">{dresses.item}</h1>
-            <p className="price">{dresses.money}</p>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                purchase(index);
+            <h1 className="producttitle">{item.item}</h1>
+            <p className="price">{item.money}</p>
+            <button
+              type="button"
+              onClick={() => {
+                purchase(item, index);
               }}
             >
-              buy
-            </a>
-            {buyingIndex === index && (
-              <div className="paymentoptions">
-                <button
-                  type="button"
-                  className="gpay-btn"
-                  onClick={() => {
-                    Orderedgpay(dresses);
-                  }}
-                >
-                  GPay
-                </button>
-                <button
-                  type="button"
-                  className="gpay-btn"
-                  onClick={() => {
-                    Orderedphonepay(dresses);
-                  }}
-                >
-                  PhonePay
-                </button>
-              </div>
-            )}
+              {loadingIndex === index ? "Adding..." : "AddCart"}
+            </button>
           </div>
         ))}
 

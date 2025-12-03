@@ -83,57 +83,40 @@
 .oneitem a:hover {
   background: #0056c7;
 }
-
-/* Payment option box */
-.paymentoptions {
-  margin-top: 12px;
-  background: #f5f5f5;
-  border-radius: 10px;
-  padding: 12px;
-  box-shadow: 0px 3px 10px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  animation: fadeIn 0.3s ease;
-}
-
 /* Fade-in animation */
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(10px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Buttons inside payment options */
-.paymentoptions button {
-  width: 100%;
+/* AddCart button (replaces gpay-btn) */
+.oneitem button {
+  width: 75%;
+  margin-top: 12px;
   padding: 10px;
+  background: #007bff;      /* Blue color */
+  color: white;
   border: none;
   border-radius: 8px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* GPay button */
-.gpay-btn {
-  background: #000;
-  color: white;
+/* Hover effect */
+.oneitem button:hover {
+  background: #0056c7;
+  transform: translateY(-2px);
 }
 
-.gpay-btn:hover {
-  background: #333;
+/* Loading state (Adding...) */
+.oneitem button:disabled {
+  background: #6c757d;   /* Grey when disabled */
+  cursor: not-allowed;
 }
 
-/* PhonePe button */
-.phonepe-btn {
-  background: #7b2cbf;
-  color: white;
-}
 
-.phonepe-btn:hover {
-  background: #5a1992;
-}
 
 /* Mobile support */
 @media (max-width: 480px) {
@@ -147,10 +130,5 @@
 
   .price {
     font-size: 16px;
-  }
-
-  .paymentoptions button {
-    font-size: 14px;
-    padding: 9px;
   }
 }

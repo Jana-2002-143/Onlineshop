@@ -7,7 +7,7 @@ import Dresses from "./Components/Dresses/Dresses";
 import Watches from "./Components/Watches/Watches";
 import Productspage from "./Reusable/Products/Productspage";
 import Phones from "./Components/Phones/Phones";
-import Laptaps from "./Components/Laptaps/Laptaps";
+import Laptops from "./Components/Laptops/Laptops";
 import Order from "./Components/Orderpage/Order";
 import About from "./Components/About/About";
 import { useState } from "react";
@@ -25,7 +25,7 @@ function App() {
         <Route path="/Dresses" element={<ProtectedRoute><Dresses /></ProtectedRoute>} />
         <Route path="/Watches" element={<ProtectedRoute><Watches /></ProtectedRoute>} />
         <Route path="/Phones" element={<ProtectedRoute><Phones /></ProtectedRoute>} />
-        <Route path="/Laptaps" element={<ProtectedRoute><Laptaps /></ProtectedRoute>} />
+        <Route path="/Laptops" element={<ProtectedRoute><Laptops /></ProtectedRoute>} />
         <Route path="/Order" element={<ProtectedRoute><Order /></ProtectedRoute>} />
         <Route path="/About" element={<ProtectedRoute><About /></ProtectedRoute>} />
       </Routes>

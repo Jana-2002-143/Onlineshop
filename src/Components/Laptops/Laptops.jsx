@@ -5,9 +5,8 @@ import Searchinput from "../../Reusable/Search/Searchinput";
 import Productspage from "../../Reusable/Products/Productspage";
 import Order from "../Orderpage/Order";
 
-function Laptaps({ searchText = "", sort = "" }) {
-  const [buyingIndex, setBuyingIndex] = useState(null);
-  const [selectedItem, setSelectedItem] = useState("");
+function Laptops({ searchText = "", sort = "" }) {
+  const [loadingIndex, setLoadingIndex] = useState(null);
   const laptaps = [
     {
       item: "Apple MacBook Pro 14 Inch Space Grey",
@@ -73,93 +72,51 @@ function Laptaps({ searchText = "", sort = "" }) {
     if (sort === "desc") return priceB - priceA;
     return 0;
   });
-  const purchase = (index) => {
-    setBuyingIndex(index);
-  };
-  const Orderedgpay = async (laptaps) => {
+  const purchase = async (item, index) => {
+    setLoadingIndex(index);
     const data = {
-      productname: laptaps.item,
-      price: laptaps.money,
-      url: laptaps.url,
+      productsname: item.item,
+      price: item.money,
+      url: item.url,
       debited: "Gpay",
     };
     try {
-      const response = await fetch("https://onlineshop-backend-vvjx.onrender.com/api/laptaps", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://onlineshop-backend-vvjx.onrender.com/api/laptops",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
       const result = await response.json();
       console.log("Order saved:", result);
-      alert("Ordered Successfully at Gpay");
-      navigate("/order", { state: result });
+      alert("Add Successfully");
     } catch (error) {
       alert("Backend not reach");
-    }
-  };
-  const Orderedphonepay = async (laptaps) => {
-    const data = {
-      productname: laptaps.item,
-      price: laptaps.money,
-      url: laptaps.url,
-      debited: "Phonepay",
-    };
-    try {
-      const response = await fetch("https://onlineshop-backend-vvjx.onrender.com/api/laptaps", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-      console.log("Order saved:", result);
-      alert("Ordered Successfully at Phonepay");
-      navigate("/order", { state: result });
-    } catch (error) {
-      alert("Backend not reach");
+    } finally {
+      setLoadingIndex(null);
     }
   };
 
   return (
     <>
       <div className="productscontainer" id="orders">
-        {sorting.map((laptaps, index) => (
+        {sorting.map((item, index) => (
           <div className="oneitem" key={index}>
             <div className="imgcontainer">
-              <img src={laptaps.url} alt={laptaps.item} />
+              <img src={item.url} alt={item.item} />
             </div>
-            <h1 className="producttitle">{laptaps.item}</h1>
-            <p className="price">{laptaps.money}</p>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                purchase(index);
+            <h1 className="producttitle">{item.item}</h1>
+            <p className="price">{item.money}</p>
+            <button
+              type="button"
+              onClick={() => {
+                purchase(item, index);
               }}
             >
-              Buy
-            </a>
-            {buyingIndex === index && (
-              <div className="paymentoptions">
-                <button
-                  type="button"
-                  className="gpay-btn"
-                  onClick={() => {
-                    Orderedgpay(laptaps);
-                  }}
-                >
-                  GPay
-                </button>
-                <button
-                  type="button"
-                  className="gpay-btn"
-                  onClick={() => {
-                    Orderedphonepay(laptaps);
-                  }}
-                >
-                  PhonePay
-                </button>
-              </div>
-            )}
+              {loadingIndex === index ? "Adding..." : "AddCart"}
+            </button>
           </div>
         ))}
 
@@ -168,4 +125,4 @@ function Laptaps({ searchText = "", sort = "" }) {
     </>
   );
 }
-export default Laptaps;
+export default Laptops;

@@ -6,7 +6,7 @@ import Order from "../Orderpage/Order";
 import { useNavigate } from "react-router-dom";
 
 function Watches({ searchText = "", sort = "" }) {
-  const [buyingIndex, setBuyingIndex] = useState(null);
+  const [loadingIndex, setLoadingIndex] = useState(null);
   const watches = [
     {
       item: "Brown Leather Belt Watch",
@@ -59,7 +59,7 @@ function Watches({ searchText = "", sort = "" }) {
       url: "https://cdn.dummyjson.com/product-images/mens-watches/rolex-submariner-watch/2.webp",
     },
   ];
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const filtered = watches.filter((w) => {
     return w.item.toLowerCase().includes(searchText.toLowerCase().trim());
@@ -72,14 +72,12 @@ function Watches({ searchText = "", sort = "" }) {
     if (sort === "desc") return priceB - priceA;
     return 0;
   });
-  const purchase = (index) => {
-    setBuyingIndex(index);
-  };
-  const Orderedgpay = async (watches) => {
+  const purchase = async (item, index) => {
+    setLoadingIndex(index); 
     const data = {
-      productname: watches.item,
-      price: watches.money,
-      url: watches.url,
+      productsname: item.item,
+      price: item.money,
+      url: item.url,
       debited: "Gpay",
     };
     try {
@@ -93,74 +91,32 @@ function Watches({ searchText = "", sort = "" }) {
       );
       const result = await response.json();
       console.log("Order saved:", result);
-      alert("Ordered Successfully at Gpay");
-      navigate("/order", { state: result });
+      alert("Add Successfully");
     } catch (error) {
       alert("Backend not reach");
+    } finally {
+      setLoadingIndex(null);
     }
   };
-  const Orderedphonepay = async (watches) => {
-    const data = {
-      productname: watches.item,
-      price: watches.money,
-      url: watches.url,
-      debited: "Phonepay",
-    };
-    try {
-      const response = await fetch("https://onlineshop-backend-vvjx.onrender.com/api/watches", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-      console.log("Order saved:", result);
-      alert("Ordered Successfully at Phonepay");
-      navigate("/order", { state: result });
-    } catch (error) {
-      alert("Backend not reach");
-    }
-  };
+
   return (
     <>
       <div className="productscontainer">
-        {sorting.map((watches, index) => (
+        {sorting.map((item, index) => (
           <div className="oneitem" key={index}>
             <div className="imgcontainer">
-              <img src={watches.url} alt={watches.item} />
+              <img src={item.url} alt={item.item} />
             </div>
-            <h1 className="producttitle">{watches.item}</h1>
-            <p className="price">{watches.money}</p>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                purchase(index);
+            <h1 className="producttitle">{item.item}</h1>
+            <p className="price">{item.money}</p>
+            <button
+              type="button"
+              onClick={() => {
+                purchase(item, index);
               }}
             >
-              buy
-            </a>
-            {buyingIndex === index && (
-              <div className="paymentoptions">
-                <button
-                  type="button"
-                  className="gpay-btn"
-                  onClick={() => {
-                    Orderedgpay(watches);
-                  }}
-                >
-                  GPay
-                </button>
-                <button
-                  type="button"
-                  className="gpay-btn"
-                  onClick={() => {
-                    Orderedphonepay(watches);
-                  }}
-                >
-                  PhonePay
-                </button>
-              </div>
-            )}
+              {loadingIndex === index ? "Adding..." : "AddCart"}
+            </button>
           </div>
         ))}
 

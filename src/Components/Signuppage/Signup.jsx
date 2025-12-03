@@ -10,6 +10,7 @@ function Signup() {
   const [rePasswordValue, setRePasswordValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
+  const [loadingIndex, setLoadingIndex] = useState(null);
 
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -18,6 +19,7 @@ function Signup() {
   const [emailError, setEmailError] = useState(false);
 
   const signupbtn = async (e) => {
+    setLoadingIndex(true);
     e.preventDefault();
     let valid = true;
 
@@ -90,6 +92,8 @@ function Signup() {
       }
     } catch (error) {
       alert("Server not reachable");
+    } finally {
+      setLoadingIndex(null);
     }
   };
 
@@ -163,7 +167,9 @@ function Signup() {
           />
           {emailError && <p className="inputempty">Please Enter Your Email</p>}
 
-          <button>Signup</button>
+          <button disabled={loadingIndex}>
+            {loadingIndex ? "Signup..." : "Signup"}
+          </button>
         </form>
       </div>
     </div>
