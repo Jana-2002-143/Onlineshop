@@ -12,16 +12,6 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const handleUsername = (e) => {
-    setUsernameValue(e.target.value);
-    setUsernameError(e.target.value.trim() === "");
-  };
-
-  const handlePassword = (e) => {
-    setPasswordValue(e.target.value);
-    setPasswordError(e.target.value.trim() === "");
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoadingIndex(true);
@@ -61,7 +51,7 @@ function Login() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
         localStorage.setItem("email", data.email);
-        localStorage.setItem("phone", data.phone);
+        localStorage.setItem("phone", data.phoneno);
 
         alert("Login Successful!");
         navigate("/Homepage");
@@ -81,31 +71,27 @@ function Login() {
 
       <div className="Logincontainer">
         <form onSubmit={handleLogin}>
-          <div className="inputGroup">
-            <label htmlFor="Userinput">User Name</label>
-            <input
-              type="text"
-              placeholder="User Name"
-              id="Userinput"
-              onChange={handleUsername}
-            />
-            {usernameError && (
-              <p className="inputempty">Please enter the name</p>
-            )}
-          </div>
+          <label>User Name</label>
+          <input
+            type="text"
+            placeholder="User Name"
+            onChange={(e) => {
+              setUsernameValue(e.target.value);
+              setUsernameError(false);
+            }}
+          />
+          {usernameError && <p className="inputempty">Please enter username</p>}
 
-          <div className="inputGroup">
-            <label htmlFor="Userinput1">Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              id="Userinput1"
-              onChange={handlePassword}
-            />
-            {passwordError && (
-              <p className="inputempty">Please enter the Password</p>
-            )}
-          </div>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPasswordValue(e.target.value);
+              setPasswordError(false);
+            }}
+          />
+          {passwordError && <p className="inputempty">Please enter password</p>}
 
           <button disabled={loadingIndex}>
             {loadingIndex ? "Login..." : "Login"}

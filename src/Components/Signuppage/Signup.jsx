@@ -84,8 +84,8 @@ function Signup() {
 
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
-        localStorage.setItem("useremail", data.email);
-        localStorage.setItem("userphoneno", data.phoneno);
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("phone", data.phoneno);
 
         alert("Account Created Successfully");
         navigate("/Login");
@@ -111,7 +111,7 @@ function Signup() {
             type="text"
             onChange={(e) => {
               setUsernameValue(e.target.value);
-              setUsernameError(e.target.value === "");
+              setUsernameError(false);
             }}
             placeholder="User Name"
           />
@@ -124,7 +124,7 @@ function Signup() {
             type="password"
             onChange={(e) => {
               setPasswordValue(e.target.value);
-              setPasswordError(e.target.value === "");
+              setPasswordError(false);
             }}
             placeholder="Password"
           />
@@ -137,7 +137,7 @@ function Signup() {
             type="password"
             onChange={(e) => {
               setRePasswordValue(e.target.value);
-              setRePasswordError(e.target.value === "");
+              setRePasswordError(false);
             }}
             placeholder="Retype Password"
           />
@@ -151,7 +151,7 @@ function Signup() {
             maxLength="10"
             onChange={(e) => {
               setPhoneValue(e.target.value);
-              setPhoneError(e.target.value === "");
+              setPhoneError(false);
             }}
             placeholder="Phone Number"
           />
@@ -164,7 +164,7 @@ function Signup() {
             type="email"
             onChange={(e) => {
               setEmailValue(e.target.value);
-              setEmailError(e.target.value === "");
+              setEmailError(false);
             }}
             placeholder="Email"
           />
