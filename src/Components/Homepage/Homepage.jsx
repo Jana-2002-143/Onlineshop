@@ -1,5 +1,9 @@
 import Header from "../../Reusable/Header/Header";
 import Searchinput from "../../Reusable/Search/Searchinput";
+import Dresses from "../../Products/Dresses/Dresses";
+import Watches from "../../Products/Watches/Watches";
+import Phones from "../../Products/Phones/Phones";
+import Laptops from "../../Products/Laptops/Laptops";
 import "./Homepage.css";
 import { useState } from "react";
 
