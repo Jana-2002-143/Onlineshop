@@ -76,7 +76,7 @@ function Signup() {
 
     try {
       const response = await fetch(
-        "https://onlineshop-backend-vvjx.onrender.com/api/signup",
+        "https://productbackend-oi15.onrender.com/api/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
