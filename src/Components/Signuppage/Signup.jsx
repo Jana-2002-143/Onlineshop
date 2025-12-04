@@ -172,7 +172,7 @@ function Signup() {
 
           <label>Re-enter Password</label>
           <input
-            type="password"
+            type={eye ? "text" : "password"}
             value={rePasswordValue}
             onChange={(e) => {
               setRePasswordValue(e.target.value);
