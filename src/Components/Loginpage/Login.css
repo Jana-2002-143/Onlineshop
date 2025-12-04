@@ -1,174 +1,124 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Main container */
+/* Page layout */
 .loginform {
-    text-align: center;
-    padding: 40px 20px;
-    min-height: 100vh;
-    background-color: bisque;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    animation: fadeIn 1s ease-in-out;
+  width: 100%;
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 0 15px;
+  text-align: left;
 }
 
-/* Title */
 .loginform h1 {
-    font-size: 2rem;
-    color: blueviolet;
-    margin-bottom: 30px;
-    font-family: "Poppins", sans-serif;
-    animation: fadeIn 1.2s ease-in-out;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
-/* Login box */
+.loginform p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* Container */
 .Logincontainer {
-    background: white;
-    width: 90%;
-    max-width: 350px;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.15);
-    animation: fadeIn 1.4s ease-in-out;
+  width: 100%;
+  margin-top: 10px;
 }
 
-/* Input group wrapper */
-.inputGroup {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px 0;
-}
-
-/* Labels */
+/* Form labels */
 .Logincontainer label {
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 5px;
-    float: left;  
-    padding-left: 5px;
-    padding: 5px;
+  margin-top: 15px;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 /* Inputs */
 .Logincontainer input {
-    width: 100%;
-    max-width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1.5px solid #999;
-    font-size: 14px;
-    transition: 0.3s ease;
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
-/* Input focus */
 .Logincontainer input:focus {
-    border-color: blueviolet;
-    box-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
-    transform: scale(1.03);
-    outline: none;
+  border-color: #6c63ff;
+}
+
+/* Password Wrapper */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-wrapper span {
+  position: absolute;
+  right: 12px;
+  font-size: 20px;
+  color: #6f6f6f;
+  cursor: pointer;
+}
+
+/* Error message */
+.Logincontainer .inputempty {
+  display: block;
+  color: #e63946;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 3px;
+  padding-left: 2px;
+  line-height: 1.2;
+  font-weight: 500;
 }
 
 /* Button */
-.Logincontainer button {
-    width: 100%;
-    padding: 12px;
-    background-color: royalblue;
-    color: white;
-    border-radius: 10px;
-    border: none;
-    margin-top: 20px;
-    font-size: 16px;
-    transition: 0.3s;
+button {
+  width: 100%;
+  margin-top: 22px;
+  padding: 12px;
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.Logincontainer button:hover {
-    background-color: rgb(0, 0, 200);
-    transform: scale(1.05);
-    cursor: pointer;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.Logincontainer button:active {
-    transform: scale(0.92);
+button:hover:not(:disabled) {
+  opacity: 0.9;
 }
 
-/* Error Message */
-.Logincontainer p {
-    color: red;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: start;
-    margin-top: 3px;
-    animation: shake 0.3s ease-in-out;
+/* Signup redirect link */
+.login-extra {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 14px;
 }
 
-/* New User Link */
 .otherpage {
-    display: block;
-    margin-top: 10px;
-    color: blue;
-    font-size: 14px;
-    text-decoration: none;
+  color: #6c63ff;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .otherpage:hover {
-    text-decoration: underline;
-}
-
-/* Fade animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Error shake */
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-4px); }
-    40%, 80% { transform: translateX(4px); }
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .loginform h1 {
-        font-size: 1.6rem;
-    }
-
-    .Logincontainer {
-        padding: 20px;
-    }
-
-    .Logincontainer button {
-        font-size: 14px;
-        padding: 10px;
-    }
-}
-/* Already have account text + link wrapper */
-.login-extra {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 14px;
-    color: #333;
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-/* New User link */
-.login-extra .otherpage {
-    display: inline;
-    color: blueviolet;
-    font-weight: 600;
-    margin-left: 5px;
-}
-
-.login-extra .otherpage:hover {
-    text-decoration: underline;
-    color: rgb(100, 0, 200);
+  text-decoration: underline;
 }

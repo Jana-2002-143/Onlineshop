@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Signup.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaEyeSlash } from "react-icons/fa";
+import { IoEyeSharp } from "react-icons/io5";
 
 function Signup() {
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ function Signup() {
   const [phoneValue, setPhoneValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [eye, SetEye] = useState(false);
 
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -18,6 +21,9 @@ function Signup() {
   const [phoneError, setPhoneError] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
+  const showhandle = (e) => {
+    SetEye(true);
+  };
   const signupbtn = async (e) => {
     e.preventDefault();
 
@@ -100,11 +106,13 @@ function Signup() {
 
   return (
     <div className="loginform">
-      <h1>Welcome to Purchase Your First Product</h1>
+      <h3>Register</h3>
+      <h1>Getting Started</h1>
+      <p>Seems You are new here,Let's set up your Profile</p>
 
       <div className="Signupcontainer">
         <form onSubmit={signupbtn}>
-          <label>User Name</label>
+          <label>Full Name</label>
           <input
             type="text"
             value={usernameValue}
@@ -114,45 +122,9 @@ function Signup() {
             }}
             placeholder="User Name"
           />
-          {usernameError && <p className="inputempty">Please enter your username</p>}
-
-          <label>Password</label>
-          <input
-            type="password"
-            value={passwordValue}
-            onChange={(e) => {
-              setPasswordValue(e.target.value);
-              setPasswordError(false);
-            }}
-            placeholder="Password"
-          />
-          {passwordError && <p className="inputempty">Please enter your password</p>}
-
-          <label>Re-enter Password</label>
-          <input
-            type="password"
-            value={rePasswordValue}
-            onChange={(e) => {
-              setRePasswordValue(e.target.value);
-              setRePasswordError(false);
-            }}
-            placeholder="Retype Password"
-          />
-          {rePasswordError && <p className="inputempty">Please re-enter your password</p>}
-
-          <label>Phone Number</label>
-          <input
-            type="text"
-            value={phoneValue}
-            maxLength="10"
-            onChange={(e) => {
-              setPhoneValue(e.target.value);
-              setPhoneError(false);
-            }}
-            placeholder="Phone Number"
-          />
-          {phoneError && <p className="inputempty">Please enter your phone number</p>}
-
+          {usernameError && (
+            <p className="inputempty">Please enter your username</p>
+          )}
           <label>Email</label>
           <input
             type="email"
@@ -165,9 +137,59 @@ function Signup() {
           />
           {emailError && <p className="inputempty">Please enter your email</p>}
 
+          <label>Phone Number</label>
+          <input
+            type="text"
+            value={phoneValue}
+            maxLength="10"
+            onChange={(e) => {
+              setPhoneValue(e.target.value);
+              setPhoneError(false);
+            }}
+            placeholder="Phone Number"
+          />
+          {phoneError && (
+            <p className="inputempty">Please enter your phone number</p>
+          )}
+          <label>Password</label>
+          <div className="password-wrapper">
+            <input
+              type={eye ? "text" : "password"}
+              value={passwordValue}
+              onChange={(e) => {
+                setPasswordValue(e.target.value);
+                setPasswordError(false);
+              }}
+              placeholder="Password"
+            />
+            <span onClick={() => SetEye(!eye)}>
+              {eye ? <IoEyeSharp /> : <FaEyeSlash />}
+            </span>
+          </div>
+          {passwordError && (
+            <p className="inputempty">Please enter your password</p>
+          )}
+
+          <label>Re-enter Password</label>
+          <input
+            type="password"
+            value={rePasswordValue}
+            onChange={(e) => {
+              setRePasswordValue(e.target.value);
+              setRePasswordError(false);
+            }}
+            placeholder="Retype Password"
+          />
+          {rePasswordError && (
+            <p className="inputempty">Please re-enter your password</p>
+          )}
+
           <button type="submit" disabled={loading}>
             {loading ? "Signing up..." : "Signup"}
           </button>
+          <div>
+            Already hane an Account?<Link to="/Login">Login</Link>
+          </div>
         </form>
       </div>
     </div>

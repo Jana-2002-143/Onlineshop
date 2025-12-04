@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { FaEyeSlash } from "react-icons/fa";
+import { IoEyeSharp } from "react-icons/io5";
 
 function Login() {
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [eye, SetEye] = useState(false);
 
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -63,7 +66,8 @@ function Login() {
 
   return (
     <div className="loginform">
-      <h1>Welcome To Buy Product</h1>
+      <h1>Welcome Back 👋</h1>
+      <div><p>Today is new Day,But it is your day.Login in to Start managing your Products</p></div>
       <div className="Logincontainer">
         <form onSubmit={handleLogin}>
           <label>User Name</label>
@@ -81,18 +85,24 @@ function Login() {
           )}
 
           <label>Password</label>
-          <input
-            type="password"
-            placeholder="Password"
-            value={passwordValue}
-            onChange={(e) => {
-              setPasswordValue(e.target.value);
-              setPasswordError(false);
-            }}
-          />
-          {passwordError && (
-            <p className="inputempty">Please enter password</p>
-          )}
+                    <div className="password-wrapper">
+                      <input
+                        type={eye ? "text" : "password"}
+                        value={passwordValue}
+                        onChange={(e) => {
+                          setPasswordValue(e.target.value);
+                          setPasswordError(false);
+                        }}
+                        placeholder="Password"
+                      />
+                      <span onClick={() => SetEye(!eye)}>
+                        {eye ? <IoEyeSharp /> : <FaEyeSlash />}
+                      </span>
+                    </div>
+                    {passwordError && (
+                      <p className="inputempty">Please enter your password</p>
+                    )}
+          
 
           <button type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Login"}

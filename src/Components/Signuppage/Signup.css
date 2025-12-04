@@ -1,106 +1,157 @@
-h1 {
-    color: blueviolet;
-    margin-bottom: 30px;
-    font-family: "Poppins", sans-serif;
-    animation: fadeIn 1.2s ease-in-out;
+/* Whole page center alignment */
+.loginform {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f5f6fb;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Signup Container */
+/* White rounded card */
 .Signupcontainer {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    width: 300px;
-    margin: 30px;
-    text-align: left;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.15);
-    animation: fadeIn 1.4s ease-in-out;
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 25px;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
-/* Spacing */
-.Signupcontainer div {
-    padding: 10px;
-    text-align: left;
+/* Header text */
+.loginform h3 {
+  text-align: center;
+  font-size: 15px;
+  color: #444;
+  letter-spacing: 0.5px;
 }
 
+.loginform h1 {
+  text-align: center;
+  font-size: 30px;
+  color: #ec1010;
+  margin-top: 5px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.loginform p {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* Form layout */
+.Signupcontainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Input labels */
 .Signupcontainer label {
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    display: block;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
 }
 
-/* Inputs */
+/* Input fields */
 .Signupcontainer input {
-    padding: 8px;
-    border-radius: 10px;
-    border: 1.5px solid #999;
-    width: 220px;
-    transition: 0.3s ease;
-    font-size: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #e8e8e8;
+  background: #fafafa;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease-in-out;
 }
 
-/* Input focus animation */
 .Signupcontainer input:focus {
-    border-color: blueviolet;
-    box-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
-    transform: scale(1.05);
-    outline: none;
+  border-color: #4a90e2;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.2);
+}
+
+/* ❗ FIXED PASSWORD INPUT WRAPPER */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 0; 
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 45px; /* space for eye icon */
+}
+
+/* Eye icon alignment */
+.password-wrapper span {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #7c7c7c;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+/* Error messages */
+.Signupcontainer .inputempty {
+  display: block;
+  color: #e63946;
+  font-size: 12px;
+  text-align: left;
+  line-height: 1;
+  font-weight: 600;
 }
 
 /* Button */
 .Signupcontainer button {
-    color: white;
-    background-color: blue;
-    border-radius: 10px;
-    border: none;
-    width: 220px;
-    padding: 10px;
-    margin-top: 10px;
-    display: block;
-    font-size: 15px;
-    transition: 0.3s ease;
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background: #0d2b66;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-/* Button hover animation */
 .Signupcontainer button:hover {
-    cursor: pointer;
-    background-color: rgb(0, 0, 190);
-    transform: scale(1.08);
+  background: #0a2150;
 }
 
-/* Button click animation */
-.Signupcontainer button:active {
-    transform: scale(0.92);
+.Signupcontainer button:disabled {
+  background: #8ea0bd;
+  cursor: not-allowed;
 }
 
-/* Error message */
-.Signupcontainer p {
-    color: red;
-    font-size: 14px;
-    font-weight: 500;
-    animation: shake 0.3s ease-in-out;
+/* Already have an account */
+.Signupcontainer div {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #444;
 }
 
-/* Fade-in animation keyframes */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.Signupcontainer a {
+  color: #0d2b66;
+  font-weight: 600;
+  margin-left: 5px;
+  text-decoration: none;
 }
 
-/* Error shake animation */
-@keyframes shake {
-    0% { transform: translateX(0); }
-    20% { transform: translateX(-4px); }
-    40% { transform: translateX(4px); }
-    60% { transform: translateX(-4px); }
-    80% { transform: translateX(4px); }
-    100% { transform: translateX(0); }
+.Signupcontainer a:hover {
+  text-decoration: underline;
 }
