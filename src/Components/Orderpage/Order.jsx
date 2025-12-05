@@ -5,6 +5,7 @@ import "./Order.css";
 
 function Order() {
   const [cartItems, setCartItems] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -36,13 +37,27 @@ function Order() {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
+  const paymentOption = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const onGpay = () => {
+    window.location.href = "/success";
+  };
+
+  const onPhonepay = () => {
+    window.location.href = "/success";
+  };
+
   return (
     <>
       <Header />
 
       <div className="orderContainer">
         <h2>Order Summary</h2>
-
         {cartItems.length === 0 ? (
           <p>No Orders Available</p>
         ) : (
@@ -67,13 +82,38 @@ function Order() {
                 >
                   +
                 </button>
-                <RiDeleteBin6Fill className="delete-icon"
+                <RiDeleteBin6Fill
+                  className="delete-icon"
                   onClick={() => deleteCart(item.id)}
                 />
               </div>
-              <button type="button" className="buyproduct">
-                Buy
-              </button>
+              <div>
+                <button
+                  type="button"
+                  className="buyproduct"
+                  onClick={paymentOption}
+                >
+                  Buy
+                </button>
+                {showModal && (
+                  <div className="modal-overlay">
+                    <div className="modal-box">
+                      <h3>Select Payment</h3>
+
+                      <p className="pay-option" onClick={onGpay}>
+                        GPay
+                      </p>
+                      <p className="pay-option" onClick={onPhonepay}>
+                        PhonePe
+                      </p>
+
+                      <button className="close-btn" onClick={closeModal}>
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           ))
         )}

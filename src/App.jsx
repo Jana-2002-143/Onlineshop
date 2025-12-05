@@ -5,6 +5,7 @@ import Homepage from "./Components/Homepage/Homepage";
 import Productspage from "./Components/Products/Productspage";
 import Order from "./Components/Orderpage/Order";
 import About from "./Components/About/About";
+import Success from "./Reusable/Success/Success";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/Productspage/:category" element={<Productspage />} />
       <Route path="/Order" element={<Order />} />
       <Route path="/About" element={<About />} />
+      <Route path="/success" element={<Success />} />
     </Routes>
   );
 }
