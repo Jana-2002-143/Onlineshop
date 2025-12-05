@@ -1,62 +1,116 @@
+:root {
+  --text-color: #222;
+  --bg-color: #ffffff;
+  --card-bg: #f7f7f7;
+  --accent: #007bff;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+  --text-color: #eaeaea;
+  --bg-color: #121212;
+  --card-bg: #1f1f1f;
+  --accent: #4ea3ff;
+  --shadow: rgba(255, 255, 255, 0.08);
+}
+
 .aboutcontainer {
   max-width: 850px;
   margin: 40px auto;
-  padding: 25px;
+  padding: 28px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px var(--shadow);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
   font-family: "Poppins", sans-serif;
+}
+
+.aboutcontainer h1,
+.aboutcontainer h2 {
+  text-align: center;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  color: var(--text-color);
   transition: color 0.3s;
 }
 
-body.dark .aboutcontainer {
-  color: #eaeaea;
+.aboutcontainer h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
 }
 
-.aboutcontainer h1 {
-  text-align: center;
-  letter-spacing: 1px;
-  font-size: 32px;
-  font-weight: 700;
+.aboutcontainer h2 {
+  font-size: 26px;
+  margin-top: 30px;
 }
 
 .aboutcontainer p {
-  letter-spacing: 0.5px;
   font-size: 17px;
   line-height: 1.7;
-  margin-top: 18px;
+  letter-spacing: 0.4px;
+  margin-top: 15px;
+  color: var(--text-color);
+}
+
+.about-list {
+  margin-top: 20px;
+  padding-left: 20px;
+  font-size: 17px;
+}
+
+.about-list li {
+  margin: 10px 0;
 }
 
 .footer {
-  margin-top: 30px;
+  margin-top: 35px;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
-.footer div {
+.contact-card {
+  background: var(--card-bg);
+  padding: 14px 20px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  min-width: 230px;
+  box-shadow: 0px 3px 8px var(--shadow);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
-.aboutcontainer a {
+.contact-card:hover {
+  transform: translateY(-3px);
+}
+
+.contact-card a {
   text-decoration: none;
   font-size: 17px;
-  transition: 0.2s;
+  font-weight: 500;
+  color: var(--accent);
+  transition: 0.3s;
 }
 
-.aboutcontainer a:hover {
+.contact-card a:hover {
   text-decoration: underline;
 }
 
-/* Dark Footer */
-body.dark .footer {
-  color: #eaeaea;
-}
-
 @media (max-width: 600px) {
+  .aboutcontainer {
+    padding: 20px;
+  }
+
   .footer {
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    align-items: stretch;
+  }
+
+  .contact-card {
+    width: 100%;
+    justify-content: flex-start;
   }
 }

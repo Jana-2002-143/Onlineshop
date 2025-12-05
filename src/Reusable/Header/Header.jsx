@@ -40,10 +40,8 @@ function Header() {
         <div className="logo">
           Online<span>Shopping</span>
         </div>
-
         <nav className="navMenu">
           <p onClick={btnHome}>Home</p>
-
           <select onChange={handleSelect}>
             <option value="">Select Category</option>
             {products.map((item) => (
@@ -52,14 +50,14 @@ function Header() {
               </option>
             ))}
           </select>
-
           <p onClick={btnOrder}>Order</p>
           <p onClick={btnAbout}>About Us</p>
 
-          <div>
+          <div className="toggleContainer">
             <label htmlFor="Switch" className="modeLabel">
               {darkMode ? "🌙 DarkMode" : "☀️ LightMode"}
             </label>
+
             <label className="switch">
               <input
                 id="Switch"
@@ -71,7 +69,6 @@ function Header() {
             </label>
           </div>
         </nav>
-
         <div className="menuIcon" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
         </div>
@@ -92,6 +89,23 @@ function Header() {
 
           <p onClick={btnOrder}>Order</p>
           <p onClick={btnAbout}>About Us</p>
+
+          {/* ADD THIS → toggle visible in mobile */}
+          <div className="toggleContainer">
+            <label htmlFor="Switch" className="modeLabel">
+              {darkMode ? "🌙 DarkMode" : "☀️ LightMode"}
+            </label>
+
+            <label className="switch">
+              <input
+                id="Switch"
+                type="checkbox"
+                checked={darkMode}
+                onChange={() => setDarkMode(!darkMode)}
+              />
+              <span className="slider"></span>
+            </label>
+          </div>
         </div>
       )}
     </>
