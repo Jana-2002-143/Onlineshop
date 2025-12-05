@@ -1,23 +1,8 @@
 .searchcontainer{
-    text-align: center;
-    margin: 50px;
-}
-.searchcontainer input{
-    width: 50%;
-    padding: 10px;
-    border-radius: 15px;
-    border-style: solid;
-    border-width: 2px;
-}
-.searchcontainer p{
-    text-align:left;
-    padding-left: 26%;
-}
-.searchcontainer {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
 }
 
 .searchcontainer input {
@@ -25,6 +10,7 @@
   padding: 10px;
   border-radius: 6px;
   border: 1px solid gray;
+  transition: background 0.3s, color 0.3s, border 0.3s;
 }
 
 .sortbox {
@@ -32,4 +18,10 @@
   border-radius: 6px;
   border: 1px solid gray;
   cursor: pointer;
+}
+body.dark .searchcontainer input,
+body.dark .sortbox {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
 }

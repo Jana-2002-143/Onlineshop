@@ -1,227 +1,174 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Header Container */
-.headercontainer {
+.headerContainer {
+  width: 100%;
+  background-color: #fff;
+  padding: 18px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
-  width: 100%;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
-  font-family: Arial, sans-serif;
-  flex-wrap: wrap;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Logo */
+/* Dark Mode Header */
+body.dark .headerContainer {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  box-shadow: 0 1px 6px rgba(255,255,255,0.08);
+}
+
+/* LOGO */
 .logo {
-  color: #ffffff;
-  font-size: 28px;
-  padding-top: 10px;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: 1px;
-  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+  color: #007bff;
 }
 
-/* Navigation */
-.navsection {
+body.dark .logo {
+  color: #4ea3ff;
+}
+
+.logo span {
+  color: #ff4b4b;
+}
+
+body.dark .logo span {
+  color: #ff7070;
+}
+
+.navMenu {
   display: flex;
   align-items: center;
-  gap: 28px;
-  flex-wrap: wrap; 
+  gap: 35px;
 }
 
-/* Navigation Items */
-.navsection p {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 17px;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: 0.25s ease-in-out;
-}
-
-.navsection p:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
-}
-
-/* Dropdown */
-.navsection select {
-  padding: 5px 8px;
-  width: 100px;
-  height: 32px;
-  border: none;
-  outline: none;
-  border-radius: 6px;
-
-  background: white;
-  color: #6a11cb;
-  font-size: 15px;
-  font-weight: 500;
-
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-  transition: 0.2s ease;
-}
-
-.navsection select:hover {
-  transform: scale(1.07);
-}
-
-/* Tablets (max-width: 1024px) */
-@media (max-width: 1024px) {
-  .logo {
-    font-size: 26px;
-  }
-
-  .navsection {
-    gap: 20px;
-  }
-}
-
-/* Large Phones (max-width: 768px) */
-@media (max-width: 768px) {
-  .headercontainer {
-    padding: 15px 20px;
-  }
-
-  .logo {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-
-  .navsection {
-    width: 100%;
-    justify-content: space-between;
-  }
-}
-
-/* Small Phones (max-width: 480px) */
-@media (max-width: 480px) {
-  .headercontainer {
-    flex-direction: column;
-    padding: 12px;
-    text-align: center;
-  }
-
-  .logo {
-    font-size: 22px;
-  }
-
-  .navsection {
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 10px;
-  }
-
-  .navsection p,
-  .navsection select {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-/* Extra Small Devices (max-width: 360px) */
-@media (max-width: 360px) {
-  .logo {
-    font-size: 20px;
-  }
-
-  .navsection p{
-    font-size: 15px;
-  }
-
-  .navsection select {
-    font-size: 14px;
-    width: 100%;
-  }
-}
-/* Logout Button */
-.navsection button {
-  padding: 6px 14px;
+.navMenu p, .navMenu select {
   font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: 6px;
   cursor: pointer;
-  transition: 0.25s ease-in-out;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s;
 }
 
-.navsection button:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: translateY(-2px);
+body.dark .navMenu p,
+body.dark .navMenu select {
+  color: #eaeaea;
 }
 
-/* Responsive Logout Button */
-@media (max-width: 768px) {
-  .navsection button {
-    font-size: 15px;
-    padding: 5px 12px;
-    width: auto;
-  }
+body.dark .navMenu select {
+  background: #2b2b2b;
+  border: 1px solid #444;
 }
 
-@media (max-width: 480px) {
-  .navsection button {
-    width: 100%;
-    text-align: center;
-    padding: 8px 0;
-  }
-}
-
-@media (max-width: 360px) {
-  .navsection button {
-    font-size: 14px;
-    padding: 6px 0;
-  }
-}
-.logout-confirm {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background: white;
-  border: 2px solid #6a11cb;
-  border-radius: 8px;
-  padding: 10px 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  z-index: 100;
-  text-align: center;
-}
-.logout-confirm p{
-  color: black;
-}
-.logout-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.logout-buttons button {
-  padding: 5px 12px;
-  border: none;
-  border-radius: 6px;
+.menuIcon {
+  display: none;
+  font-size: 30px;
   cursor: pointer;
-  font-weight: 600;
+  transition: color 0.3s;
 }
 
-.logout-buttons button:first-child {
-  background: #6a11cb;
+body.dark .menuIcon {
   color: #fff;
 }
 
-.logout-buttons button:last-child {
-  background: #ccc;
-  color: #333;
+/* Mobile Mode */
+@media (max-width: 768px) {
+  .navMenu {
+    display: none; 
+  }
+
+  .menuIcon {
+    display: block; 
+  }
 }
 
+.mobileMenu {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: #fff;
+  padding: 20px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Dark Mobile Menu */
+body.dark .mobileMenu {
+  background: #1f1f1f;
+  color: #eaeaea;
+  box-shadow: 0px 5px 15px rgba(255,255,255,0.1);
+}
+
+.mobileMenu p {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mobileMenu select {
+  padding: 8px;
+  background: inherit;
+}
+
+/* ------------------------------
+   TOGGLE SWITCH
+------------------------------ */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+.modeLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
 

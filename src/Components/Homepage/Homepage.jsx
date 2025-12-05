@@ -1,8 +1,11 @@
+import { useState } from "react";
 import Header from "../../Reusable/Header/Header";
 import Searchinput from "../../Reusable/Search/Searchinput";
 import "./Homepage.css";
-import Productspage from "../Products/Productspage";
-import { useState } from "react";
+import Dresses from "../../ProductItems/Dresses";
+import Phones from "../../ProductItems/Phones";
+import Laptops from "../../ProductItems/Laptops";
+import Watches from "../../ProductItems/Watches";
 
 function Homepage() {
   const [searchText, setSearchText] = useState("");
