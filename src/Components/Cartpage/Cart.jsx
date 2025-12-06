@@ -58,6 +58,7 @@ function Cart() {
       buyerName,
       buyerEmail,
       itemName: selectedItem.name,
+      quantity:item.quantity,
       price: selectedItem.price,
       image: selectedItem.image,
       debited: method,
@@ -94,7 +95,7 @@ function Cart() {
           <p>No Orders Available</p>
         ) : (
           cartItems.map((item, index) => (
-            <div key={`${item.id}-${index}`} className="orderItem">
+            <div key={`${item.id}${index}`} className="orderItem">
               <img src={item.image} alt={item.name} style={{ width: 120 }} />
               <p>{item.name}</p>
               <p>₹ {item.price}</p>
