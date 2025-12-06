@@ -48,9 +48,9 @@ function Cart() {
     e.preventDefault();
     if (!selectedItem) return;
     const data = {
-      itemName: item.name,
-      price: item.price,
-      image: item.image,
+      itemName: selectedItem.name,
+      price: selectedItem.price,
+      image: selectedItem.image,
       debited: "Gpay",
     };
     try {
@@ -74,10 +74,9 @@ function Cart() {
     e.preventDefault();
     if (!selectedItem) return;
     const data = {
-      id: item.id,
-      itemName: item.name,
-      price: item.price,
-      image: item.image,
+      itemName: selectedItem.name,
+      price: selectedItem.price,
+      image: selectedItem.image,
       debited: "Phonepay",
     };
     try {
