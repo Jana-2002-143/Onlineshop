@@ -81,3 +81,53 @@ body.dark .sortbox:hover {
     width: 180px;
   }
 }
+/* Dropdown (select) style */
+.categorybox,
+.sortbox {
+  appearance: none;              
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #fff url("data:image/svg+xml;utf8,<svg fill='black' height='12' width='12' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,10'/></svg>") 
+    no-repeat right 10px center; 
+  background-size: 12px;
+  padding-right: 30px;           
+  cursor: pointer;
+}
+
+/* Option dropdown style */
+.categorybox option,
+.sortbox option {
+  padding: 10px;
+  background: #fff;
+  color: #000;
+}
+
+/* Hover inside dropdown */
+.categorybox option:hover,
+.sortbox option:hover {
+  background: #f0f0f0;
+}
+
+/* Dark mode dropdown */
+body.dark .categorybox,
+body.dark .sortbox {
+  background: #222 url("data:image/svg+xml;utf8,<svg fill='white' height='12' width='12' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,10'/></svg>") 
+    no-repeat right 10px center;
+  background-size: 12px;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+/* Dark mode option list */
+body.dark .categorybox option,
+body.dark .sortbox option {
+  background: #222;
+  color: #fff;
+}
+
+/* Dark mode hover inside dropdown */
+body.dark .categorybox option:hover,
+body.dark .sortbox option:hover {
+  background: #333;
+}
+
