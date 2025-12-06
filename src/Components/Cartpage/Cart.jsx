@@ -6,6 +6,7 @@ import "./Cart.css";
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -36,16 +37,16 @@ function Cart() {
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-
-  const paymentOption = () => {
+  const paymentOption = (item) => {
+    setSelectedItem(item);
     setShowModal(true);
   };
   const closeModal = () => {
     setShowModal(false);
   };
-
   const onGpay = async (e) => {
     e.preventDefault();
+    if (!selectedItem) return;
     const data = {
       itemName: item.name,
       price: item.price,
@@ -71,6 +72,7 @@ function Cart() {
   };
   const onPhonepay = async (e) => {
     e.preventDefault();
+    if (!selectedItem) return;
     const data = {
       id: item.id,
       itemName: item.name,
@@ -99,7 +101,6 @@ function Cart() {
   return (
     <>
       <Header />
-
       <div className="orderContainer">
         <h2>Order Summary</h2>
         {cartItems.length === 0 ? (
@@ -135,7 +136,7 @@ function Cart() {
                 <button
                   type="button"
                   className="buyproduct"
-                  onClick={paymentOption}
+                  onClick={() => paymentOption(item)}
                 >
                   Buy
                 </button>
