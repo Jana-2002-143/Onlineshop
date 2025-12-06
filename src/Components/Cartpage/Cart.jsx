@@ -82,8 +82,8 @@ function Cart() {
     e.preventDefault();
     if (!selectedItem) return;
     const data = {
-      buyername: buyer,
-      buyeremail: buyeraccount,
+      buyerName: buyer,
+      buyerEmail: buyeraccount,
       itemName: selectedItem.name,
       price: selectedItem.price,
       image: selectedItem.image,
