@@ -69,6 +69,17 @@ function Laptops({ searchText = "", sort = "" }) {
     if (sort === "desc") return b.money - a.money;
     return 0;
   });
+  const addOrder = (product) => {
+    const orderItem = {
+      name: product.item,
+      price: product.money,
+      image: product.url,
+    };
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    existingCart.push(orderItem);
+    localStorage.setItem("cart", JSON.stringify(existingCart));
+    alert("Added to Cart!");
+  };
 
   return (
     <div className="product-container">
@@ -77,7 +88,13 @@ function Laptops({ searchText = "", sort = "" }) {
           <img src={product.url} alt={product.item} className="product-image" />
           <h3 className="product-name">{product.item}</h3>
           <p className="product-price">{product.money}</p>
-          <button className="add-cart-btn">Add to Cart</button>
+          <button
+            type="button"
+            className="add-cart-btn"
+            onClick={() => addOrder(product)}
+          >
+            Add to Cart
+          </button>
         </div>
       ))}
     </div>

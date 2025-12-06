@@ -7,21 +7,25 @@ function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartWithQty = storedCart.map((item) => ({
+    const cartWithUniqueIds = storedCart.map((item) => ({
       ...item,
+      id: item.id ? item.id : Date.now() + Math.random(),
       quantity: item.quantity || 1,
     }));
-    setCartItems(cartWithQty);
+    setCartItems(cartWithUniqueIds);
   }, []);
 
+  const updateCart = (updatedCart) => {
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
   const onIncrement = (id) => {
     const updated = cartItems.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    setCartItems(updated);
+    updateCart(updated);
   };
 
   const onDecrement = (id) => {
@@ -30,33 +34,35 @@ function Cart() {
         ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
         : item
     );
-    setCartItems(updated);
+    updateCart(updated);
   };
+
   const deleteCart = (id) => {
     const updatedCart = cartItems.filter((item) => item.id !== id);
-    setCartItems(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    updateCart(updatedCart);
   };
+
   const paymentOption = (item) => {
     setSelectedItem(item);
     setShowModal(true);
   };
-  const closeModal = () => {
-    setShowModal(false);
-  };
-  const buyer = localStorage.getItem("username");
-  const buyeraccount = localStorage.getItem("email");
-  const onGpay = async (e) => {
-    e.preventDefault();
+
+  const closeModal = () => setShowModal(false);
+
+  const buyerName = localStorage.getItem("username");
+  const buyerEmail = localStorage.getItem("email");
+
+  const handlePayment = async (method) => {
     if (!selectedItem) return;
     const data = {
-      buyerName: buyer,
-      buyerEmail: buyeraccount,
+      buyerName,
+      buyerEmail,
       itemName: selectedItem.name,
       price: selectedItem.price,
       image: selectedItem.image,
-      debited: "Gpay",
+      debited: method,
     };
+
     try {
       const response = await fetch(
         "https://productbackend-oi15.onrender.com/api/order",
@@ -66,38 +72,7 @@ function Cart() {
           body: JSON.stringify(data),
         }
       );
-      if (response.ok) {
-        console.log("Successfull");
-        window.location.href = "/success";
-      } else {
-        const errorMsg = await response.text();
-        alert("Payment Failed: " + errorMsg);
-      }
-    } catch (error) {
-      console.error("Network Error:", error);
-      alert("Network Error: Could not connect to server");
-    }
-  };
-  const onPhonepay = async (e) => {
-    e.preventDefault();
-    if (!selectedItem) return;
-    const data = {
-      buyerName: buyer,
-      buyerEmail: buyeraccount,
-      itemName: selectedItem.name,
-      price: selectedItem.price,
-      image: selectedItem.image,
-      debited: "Phonepay",
-    };
-    try {
-      const response = await fetch(
-        "https://productbackend-oi15.onrender.com/api/order",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
+
       if (response.ok) {
         window.location.href = "/success";
       } else {
@@ -118,8 +93,8 @@ function Cart() {
         {cartItems.length === 0 ? (
           <p>No Orders Available</p>
         ) : (
-          cartItems.map((item) => (
-            <div key={item.id} className="orderItem">
+          cartItems.map((item, index) => (
+            <div key={`${item.id}-${index}`} className="orderItem">
               <img src={item.image} alt={item.name} style={{ width: 120 }} />
               <p>{item.name}</p>
               <p>₹ {item.price}</p>
@@ -144,35 +119,31 @@ function Cart() {
                   onClick={() => deleteCart(item.id)}
                 />
               </div>
-              <div>
-                <button
-                  type="button"
-                  className="buyproduct"
-                  onClick={() => paymentOption(item)}
-                >
-                  Buy
-                </button>
-                {showModal && (
-                  <div className="modal-overlay">
-                    <div className="modal-box">
-                      <h3>Select Payment</h3>
-
-                      <p className="pay-option" onClick={onGpay}>
-                        GPay
-                      </p>
-                      <p className="pay-option" onClick={onPhonepay}>
-                        PhonePe
-                      </p>
-
-                      <button className="close-btn" onClick={closeModal}>
-                        Close
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <button
+                type="button"
+                className="buyproduct"
+                onClick={() => paymentOption(item)}
+              >
+                Buy
+              </button>
             </div>
           ))
+        )}
+        {showModal && selectedItem && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <h3>Select Payment</h3>
+              <p className="pay-option" onClick={() => handlePayment("Gpay")}>
+                GPay
+              </p>
+              <p className="pay-option" onClick={() => handlePayment("Phonepay")}>
+                PhonePe
+              </p>
+              <button className="close-btn" onClick={closeModal}>
+                Close
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </>
