@@ -24,7 +24,7 @@ function Header() {
   }, [darkMode]);
 
   const btnHome = () => navigate("/Homepage");
-  const btnOrder = () => navigate("/Cart");
+  const btnCart = () => navigate("/Cart");
   const btnAbout = () => navigate("/About");
 
   return (
@@ -35,7 +35,7 @@ function Header() {
         </div>
         <nav className="navMenu">
           <p onClick={btnHome}>Home</p>
-          <p onClick={btnOrder}>Cart</p>
+          <p onClick={btnCart}>Cart</p>
           <p onClick={btnAbout}>About Us</p>
 
           <div className="toggleContainer">

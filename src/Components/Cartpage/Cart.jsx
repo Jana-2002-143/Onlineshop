@@ -60,6 +60,7 @@ function Cart() {
         body: JSON.stringify(data),
       });
       if (response.ok) {
+        console.log("Successfull")
         window.location.href = "/success";
       } else {
         const errorMsg = await response.text();
