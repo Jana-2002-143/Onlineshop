@@ -1,10 +1,20 @@
-function Order(orderHistory="") {
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+function Order() {
   const [ordersHistory, setOrdersHistory] = useState([orderHistory]);
+  const location = useLocation();
+useEffect(() => {
+    if (location.state?.orders) {
+      setOrdersHistory(location.state.orders);
+    }
+  
+  }, [location.state]);
   return (
     <>
       return (
       <div>
-        <button onClick={history}>Load History</button>
+        <button onClick={history}>Order History</button>
 
         <div className="history-container">
           {ordersHistory.map((order) => (

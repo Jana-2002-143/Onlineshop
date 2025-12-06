@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./Header.css";
 import { useState, useEffect } from "react";
 
-function Header(orderHistory) {
+function Header() {
   const [switchName, setSwitchName] = useState(false);
   const [orderHistory, setOrderHistory] = useState(null);
   const navigate = useNavigate();
@@ -37,6 +37,7 @@ function Header(orderHistory) {
       const data = await response.json();
       console.log(data);
       setOrderHistory(data);
+      navigate("/Order",{ state: { orders: data } });
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
