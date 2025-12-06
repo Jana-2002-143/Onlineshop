@@ -51,7 +51,14 @@ function Cart() {
 
   const buyerName = localStorage.getItem("username");
   const buyerEmail = localStorage.getItem("email");
-  const localdate = new Date().toISOString().slice(0, 19); 
+  const stt= new Date(); 
+  const day=String(stt.getDate()).padStart(2,"0");
+  const month=String(stt.getMonth()).padStart(2,"0");
+  const year=String(stt.getFullYear());
+  const hours=String(stt.getHours()).padStart(2,"0");
+  const minutes=String(stt.getMinutes()).padStart(2,"0");
+  const seconds=String(stt.getSeconds()).padStart(2,"0");
+  const localdate=`${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
 
   const handlePayment = async (method) => {
     if (!selectedItem) return;
