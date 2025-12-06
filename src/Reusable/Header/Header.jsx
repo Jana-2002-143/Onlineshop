@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import "./Header.css";
 import { useState, useEffect } from "react";
 
-function Header() {
+function Header(orderHistory) {
   const [switchName, setSwitchName] = useState(false);
+  const [orderHistory, setOrderHistory] = useState(null);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -27,6 +28,20 @@ function Header() {
   const btnCart = () => navigate("/Cart");
   const btnAbout = () => navigate("/About");
 
+  const history = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("", {
+        method: "GET",
+      });
+      const data = await response.json();
+      console.log(data);
+      setOrderHistory(data);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
+
   return (
     <>
       <div className="headerContainer">
@@ -36,6 +51,7 @@ function Header() {
         <nav className="navMenu">
           <p onClick={btnHome}>Home</p>
           <p onClick={btnCart}>Cart</p>
+          <p onClick={history}>Order</p>
           <p onClick={btnAbout}>About Us</p>
 
           <div className="toggleContainer">
