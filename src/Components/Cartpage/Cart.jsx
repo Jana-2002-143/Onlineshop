@@ -44,23 +44,30 @@ function Cart() {
   const closeModal = () => {
     setShowModal(false);
   };
+  const buyer = localStorage.getItem("username");
+  const buyeraccount = localStorage.getItem("email");
   const onGpay = async (e) => {
     e.preventDefault();
     if (!selectedItem) return;
     const data = {
+      buyername: buyer,
+      buyeremail: buyeraccount,
       itemName: selectedItem.name,
       price: selectedItem.price,
       image: selectedItem.image,
       debited: "Gpay",
     };
     try {
-      const response = await fetch("https://productbackend-oi15.onrender.com/api/order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://productbackend-oi15.onrender.com/api/order",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
       if (response.ok) {
-        console.log("Successfull")
+        console.log("Successfull");
         window.location.href = "/success";
       } else {
         const errorMsg = await response.text();
@@ -75,17 +82,22 @@ function Cart() {
     e.preventDefault();
     if (!selectedItem) return;
     const data = {
+      buyername: buyer,
+      buyeremail: buyeraccount,
       itemName: selectedItem.name,
       price: selectedItem.price,
       image: selectedItem.image,
       debited: "Phonepay",
     };
     try {
-      const response = await fetch("https://productbackend-oi15.onrender.com/api/order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://productbackend-oi15.onrender.com/api/order",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
       if (response.ok) {
         window.location.href = "/success";
       } else {
