@@ -61,7 +61,7 @@ function Cart() {
       itemName: selectedItem.name,
       quantity:selectedItem.quantity,
       date:localdate,
-      price: selectedItem.price,
+      price: parseInt(selectedItem.price, 10) * selectedItem.quantity,
       image: selectedItem.image,
       debited: method,
     };
