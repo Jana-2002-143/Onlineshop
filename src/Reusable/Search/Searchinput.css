@@ -1,51 +1,83 @@
-.searchcontainer{
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px auto;
+.searchcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px auto;
+  width: 100%;
+  padding: 0 10px;
+  flex-wrap: nowrap;       
+  overflow-x: auto;        
+  scrollbar-width: none;   
 }
 
-.searchcontainer input {
-  width: 250px;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid gray;
-  transition: background 0.3s, color 0.3s, border 0.3s;
+.searchcontainer::-webkit-scrollbar {
+  display: none;           
 }
 
+.searchcontainer input,
+.categorybox,
 .sortbox {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid gray;
-  cursor: pointer;
+  background: #fff;
+  transition: 0.3s;
+  flex-shrink: 0;     
 }
+
+/* Input width */
+.searchcontainer input {
+  width: 220px;
+}
+
+/* Category & Sort */
+.categorybox,
+.sortbox {
+  width: 140px;
+}
+
+/* Hover */
+.searchcontainer input:hover,
+.categorybox:hover,
+.sortbox:hover {
+  border-color: #000;
+}
+
+/* Dark mode */
 body.dark .searchcontainer input,
+body.dark .categorybox,
 body.dark .sortbox {
   background: #222;
   color: #fff;
   border: 1px solid #444;
 }
-.categorybox {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid gray;
-  cursor: pointer;
-  background: #fff;
-  transition: background 0.3s, color 0.3s, border 0.3s;
-}
 
-/* Dark mode */
-body.dark .categorybox {
-  background: #222;
-  color: #fff;
-  border: 1px solid #444;
-}
-
-/* Hover effect */
-.categorybox:hover {
-  border-color: #000;
-}
-
-body.dark .categorybox:hover {
+body.dark .searchcontainer input:hover,
+body.dark .categorybox:hover,
+body.dark .sortbox:hover {
   border-color: #888;
+}
+
+/* 📱 Small devices: nothing breaks, scroll available */
+@media (max-width: 576px) {
+  .searchcontainer input {
+    width: 140px;
+  }
+
+  .categorybox,
+  .sortbox {
+    width: 100px;
+  }
+}
+
+/* 🖥️ Large screens */
+@media (min-width: 1024px) {
+  .searchcontainer input {
+    width: 280px;
+  }
+  .categorybox,
+  .sortbox {
+    width: 180px;
+  }
 }
