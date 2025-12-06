@@ -51,6 +51,8 @@ function Cart() {
 
   const buyerName = localStorage.getItem("username");
   const buyerEmail = localStorage.getItem("email");
+  const localdate = new Date().toISOString(); 
+
 
   const handlePayment = async (method) => {
     if (!selectedItem) return;
@@ -58,7 +60,8 @@ function Cart() {
       buyerName,
       buyerEmail,
       itemName: selectedItem.name,
-      quantity:item.quantity,
+      quantity:selectedItem.quantity,
+      date:localdate,
       price: selectedItem.price,
       image: selectedItem.image,
       debited: method,
