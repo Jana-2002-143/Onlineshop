@@ -27,12 +27,13 @@ function Header() {
   const btnHome = () => navigate("/Homepage");
   const btnCart = () => navigate("/Cart");
   const btnAbout = () => navigate("/About");
+  const buyerName = localStorage.getItem("username");
 
   const history = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://productbackend-oi15.onrender.com/api/history",
+        "https://productbackend-oi15.onrender.com/api/history/${buyerName}",
         {
           method: "GET",
           headers: { "Content-type": "application/json" },
