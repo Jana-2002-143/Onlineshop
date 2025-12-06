@@ -33,7 +33,7 @@ function Header() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://productbackend-oi15.onrender.com/api/history/${buyerName}",
+        `https://productbackend-oi15.onrender.com/api/history/${buyerName}`,
         {
           method: "GET",
           headers: { "Content-type": "application/json" },
