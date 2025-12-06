@@ -31,14 +31,19 @@ function Header() {
   const history = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://productbackend-oi15.onrender.com/api/history", {
-        method: "GET",
-        headers:{"Content-type":"application/json",}
-      });
+      const response = await fetch(
+        "https://productbackend-oi15.onrender.com/api/history",
+        {
+          method: "GET",
+          headers: { "Content-type": "application/json" },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
-      console.log(data);
-      setOrderHistory(data);
-      navigate("/Order",{ state: { orders: data } });
+      console.log("Order data:", data);
+      navigate("/Order", { state: { orders: data } });
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
