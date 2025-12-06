@@ -80,6 +80,7 @@ function Header() {
         <div className="mobileMenu">
           <p onClick={btnHome}>Home</p>
           <p onClick={btnCart}>Cart</p>
+          <p onClick={history}>Order</p>
           <p onClick={btnAbout}>About Us</p>
           <div className="toggleContainer">
             <label htmlFor="Switch" className="modeLabel">
