@@ -54,7 +54,7 @@ function Cart() {
       debited: "Gpay",
     };
     try {
-      const response = await fetch("", {
+      const response = await fetch("https://productbackend-oi15.onrender.com/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -80,7 +80,7 @@ function Cart() {
       debited: "Phonepay",
     };
     try {
-      const response = await fetch("", {
+      const response = await fetch("https://productbackend-oi15.onrender.com/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
