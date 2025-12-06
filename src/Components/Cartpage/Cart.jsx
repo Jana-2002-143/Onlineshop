@@ -91,7 +91,7 @@ function Cart() {
     };
     try {
       const response = await fetch(
-        "https://productbackend-oi15.onrender.com/api/order",
+        `https://productbackend-oi15.onrender.com/api/history/${buyerName}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
