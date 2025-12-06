@@ -50,7 +50,7 @@ function Header() {
               </option>
             ))}
           </select>
-          <p onClick={btnOrder}>Order</p>
+          <p onClick={btnOrder}>Cart</p>
           <p onClick={btnAbout}>About Us</p>
 
           <div className="toggleContainer">
@@ -87,7 +87,7 @@ function Header() {
             ))}
           </select>
 
-          <p onClick={btnOrder}>Order</p>
+          <p onClick={btnOrder}>Cart</p>
           <p onClick={btnAbout}>About Us</p>
 
           {/* ADD THIS → toggle visible in mobile */}

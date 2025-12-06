@@ -1,9 +1,9 @@
 import Header from "../../Reusable/Header/Header";
 import { useEffect, useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import "./Order.css";
+import "./Cart.css";
 
-function Order() {
+function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -122,4 +122,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default Cart;
