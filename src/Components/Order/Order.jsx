@@ -30,8 +30,9 @@ function Order() {
                 <img src={order.image} alt={order.itemName} />
                 <div className="history-info">
                   <h3>{order.itemName}</h3>
-                  <p>₹{order.price}</p>
-                  <p>{order.date}</p>
+                  <p>Quantity:{order.quantity}</p>
+                  <p>Price:₹{order.totalPrice}</p>
+                  <p>Date:{order.date}</p>
                 </div>
               </div>
             ))}

@@ -1,12 +1,13 @@
+/* ---------- Container ---------- */
 .history-container {
   width: 100%;
   min-height: 100vh;
-  padding-top: 0px; 
+  padding-top: 0;
   background: var(--bg-color, #ffffff);
-  transition: 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Inner content */
+/* ---------- Inner Content ---------- */
 .history-content {
   max-width: 900px;
   margin: auto;
@@ -14,7 +15,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Title */
+/* ---------- Title ---------- */
 .history-content h1 {
   text-align: center;
   font-size: 28px;
@@ -22,14 +23,14 @@
   font-weight: 700;
 }
 
-/* No order message */
+/* ---------- No Orders Message ---------- */
 .history-content p {
   text-align: center;
   font-size: 18px;
   opacity: 0.8;
 }
 
-/* Order card */
+/* ---------- Order Card ---------- */
 .history-card {
   display: flex;
   align-items: center;
@@ -37,15 +38,16 @@
   padding: 15px;
   border-radius: 15px;
   margin-bottom: 15px;
-  box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
-  transition: 0.3s;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .history-card:hover {
   transform: translateY(-3px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
 }
 
-/* Card image */
+/* ---------- Card Image ---------- */
 .history-card img {
   width: 90px;
   height: 90px;
@@ -53,9 +55,10 @@
   object-fit: cover;
   margin-right: 15px;
   border: 2px solid #ddd;
+  transition: border-color 0.3s ease;
 }
 
-/* Info section */
+/* ---------- Info Section ---------- */
 .history-info h3 {
   margin: 0;
   font-size: 19px;
@@ -68,10 +71,14 @@
   opacity: 0.85;
 }
 
-/* -------- Dark Mode -------- */
+/* ---------- Dark Mode ---------- */
+body.dark .history-container {
+  background: #121212;
+}
+
 body.dark .history-card {
   background: #1e1e1e;
-  box-shadow: 0px 2px 6px rgba(255,255,255,0.05);
+  box-shadow: 0px 2px 6px rgba(255, 255, 255, 0.05);
   border: 1px solid #333;
 }
 
@@ -84,7 +91,7 @@ body.dark .history-info p {
   color: #eaeaea;
 }
 
-/* -------- Responsive -------- */
+/* ---------- Responsive ---------- */
 @media (max-width: 600px) {
   .history-card {
     flex-direction: column;
@@ -100,5 +107,9 @@ body.dark .history-info p {
 
   .history-info h3 {
     font-size: 22px;
+  }
+
+  .history-info p {
+    font-size: 16px;
   }
 }
