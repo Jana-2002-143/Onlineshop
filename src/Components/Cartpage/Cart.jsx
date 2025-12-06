@@ -44,12 +44,56 @@ function Cart() {
     setShowModal(false);
   };
 
-  const onGpay = () => {
-    window.location.href = "/success";
+  const onGpay = async (e) => {
+    e.preventDefault();
+    const data = {
+      itemName: item.name,
+      price: item.price,
+      image: item.image,
+      debited: "Gpay",
+    };
+    try {
+      const response = await fetch("", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        window.location.href = "/success";
+      } else {
+        const errorMsg = await response.text();
+        alert("Payment Failed: " + errorMsg);
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+      alert("Network Error: Could not connect to server");
+    }
   };
-
-  const onPhonepay = () => {
-    window.location.href = "/success";
+  const onPhonepay = async (e) => {
+    e.preventDefault();
+    const data = {
+      id: item.id,
+      itemName: item.name,
+      price: item.price,
+      image: item.image,
+      debited: "Phonepay",
+    };
+    try {
+      const response = await fetch("", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        window.location.href = "/success";
+      } else {
+        const errorMsg = await response.text();
+        alert("Payment Failed: " + errorMsg);
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+      alert("Network Error: Could not connect to server");
+    }
   };
 
   return (
