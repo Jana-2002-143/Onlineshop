@@ -74,7 +74,6 @@ function Dresses({ searchText = "", sort = "" }) {
   });
   const addOrder = (product) => {
     const orderItem = {
-      id: product.id,
       name: product.item,
       price: product.money,
       image: product.url,
