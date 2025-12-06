@@ -24,7 +24,7 @@ function Header() {
   }, [darkMode]);
 
   const btnHome = () => navigate("/Homepage");
-  const btnOrder = () => navigate("/Order");
+  const btnOrder = () => navigate("/Cart");
   const btnAbout = () => navigate("/About");
 
   return (
