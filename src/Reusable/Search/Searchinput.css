@@ -25,3 +25,27 @@ body.dark .sortbox {
   color: #fff;
   border: 1px solid #444;
 }
+.categorybox {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid gray;
+  cursor: pointer;
+  background: #fff;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+/* Dark mode */
+body.dark .categorybox {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+/* Hover effect */
+.categorybox:hover {
+  border-color: #000;
+}
+
+body.dark .categorybox:hover {
+  border-color: #888;
+}

@@ -3,16 +3,9 @@ import "./Header.css";
 import { useState, useEffect } from "react";
 
 function Header() {
-  const products = ["Dresses", "Watches", "Phones", "Laptops"];
   const [switchName, setSwitchName] = useState(false);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleSelect = (e) => {
-    const category = e.target.value.toLowerCase();
-    navigate(`/Productspage/${category}`);
-    setMenuOpen(false);
-  };
 
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
@@ -42,14 +35,6 @@ function Header() {
         </div>
         <nav className="navMenu">
           <p onClick={btnHome}>Home</p>
-          <select onChange={handleSelect}>
-            <option value="">Select Category</option>
-            {products.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
           <p onClick={btnOrder}>Cart</p>
           <p onClick={btnAbout}>About Us</p>
 
@@ -77,20 +62,8 @@ function Header() {
       {menuOpen && (
         <div className="mobileMenu">
           <p onClick={btnHome}>Home</p>
-
-          <select onChange={handleSelect}>
-            <option value="">Select Category</option>
-            {products.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-
           <p onClick={btnOrder}>Cart</p>
           <p onClick={btnAbout}>About Us</p>
-
-          {/* ADD THIS → toggle visible in mobile */}
           <div className="toggleContainer">
             <label htmlFor="Switch" className="modeLabel">
               {darkMode ? "🌙 DarkMode" : "☀️ LightMode"}
