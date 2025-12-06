@@ -1,0 +1,104 @@
+.history-container {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 0px; 
+  background: var(--bg-color, #ffffff);
+  transition: 0.3s ease-in-out;
+}
+
+/* Inner content */
+.history-content {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Title */
+.history-content h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* No order message */
+.history-content p {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* Order card */
+.history-card {
+  display: flex;
+  align-items: center;
+  background: #f7f7f7;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.history-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Card image */
+.history-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 2px solid #ddd;
+}
+
+/* Info section */
+.history-info h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.history-info p {
+  margin: 3px 0;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* -------- Dark Mode -------- */
+body.dark .history-card {
+  background: #1e1e1e;
+  box-shadow: 0px 2px 6px rgba(255,255,255,0.05);
+  border: 1px solid #333;
+}
+
+body.dark .history-card img {
+  border-color: #444;
+}
+
+body.dark .history-info h3,
+body.dark .history-info p {
+  color: #eaeaea;
+}
+
+/* -------- Responsive -------- */
+@media (max-width: 600px) {
+  .history-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .history-card img {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 15px;
+  }
+
+  .history-info h3 {
+    font-size: 22px;
+  }
+}

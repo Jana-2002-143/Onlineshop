@@ -1,34 +1,45 @@
+import Header from "../../Reusable/Header/Header";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import "./Order.css";
 
 function Order() {
-  const [ordersHistory, setOrdersHistory] = useState([orderHistory]);
   const location = useLocation();
-useEffect(() => {
+  const [ordersHistory, setOrdersHistory] = useState([]);
+
+  useEffect(() => {
+    console.log("Location state:", location.state);
     if (location.state?.orders) {
       setOrdersHistory(location.state.orders);
     }
-  
   }, [location.state]);
-  return (
-    <>
-      return (
-      <div>
-        <button onClick={history}>Order History</button>
 
-        <div className="history-container">
-          {ordersHistory.map((order) => (
-            <div key={order.id} className="history-card">
-              <img src={order.image} alt={order.itemName} />
-              <h3>{order.itemName}</h3>
-              <p>₹{order.price}</p>
-              <p>{order.date}</p>
-            </div>
-          ))}
-        </div>
+  return (
+    <div className="history-container">
+      <Header />
+
+      <div className="history-content">
+        {ordersHistory.length === 0 ? (
+          <p>No orders found.</p>
+        ) : (
+          <div>
+            <h1>Order History</h1>
+
+            {ordersHistory.map((order) => (
+              <div key={order.id} className="history-card">
+                <img src={order.image} alt={order.itemName} />
+                <div className="history-info">
+                  <h3>{order.itemName}</h3>
+                  <p>₹{order.price}</p>
+                  <p>{order.date}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      );
-    </>
+    </div>
   );
 }
+
 export default Order;
