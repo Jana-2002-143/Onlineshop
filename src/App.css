@@ -1,0 +1,77 @@
+
+body {
+  background-color: #f5f5f5;
+  color: #222;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+/* Links */
+a, p, span, select, option {
+  color: inherit;
+}
+
+/* Cards default */
+.product-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* Buttons default */
+button, .add-cart-btn {
+  background: #4caf50;
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Inputs, selects default */
+input, select {
+  background: #fff;
+  color: #222;
+  border: 1px solid #ccc;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+/* Header default */
+.headerContainer {
+  background: #ffffff;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Mobile menu default */
+.mobileMenu {
+  background: #ffffff;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Header dark */
+body.dark .headerContainer {
+  background: #1f1f1f;
+  color: #f1f1f1;
+  border-bottom: 1px solid #333;
+}
+
+body.dark .logo span {
+  color: #4caf50 !important;
+}
+
+/* Navigation text */
+body.dark p,
+body.dark select,
+body.dark option {
+  color: #eaeaea;
+}
+
+/* Select dropdown dark */
+body.dark select {
+  background: #1f1f1f;
+  border:

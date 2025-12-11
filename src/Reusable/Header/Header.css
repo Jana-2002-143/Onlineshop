@@ -1,0 +1,186 @@
+.headerContainer {
+  width: 100%;
+  background-color: #fff;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark .headerContainer {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  box-shadow: 0 1px 6px rgba(255,255,255,0.08);
+}
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #007bff;
+}
+body.dark .logo {
+  color: #4ea3ff;
+}
+.logo span {
+  color: #ff4b4b;
+}
+body.dark .logo span {
+  color: #ff7070;
+}
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+.navMenu p, .navMenu select {
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+body.dark .navMenu p,
+body.dark .navMenu select {
+  color: #eaeaea;
+  background: #2b2b2b;
+  border: 1px solid #444;
+}
+.menuIcon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+body.dark .menuIcon {
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .navMenu {
+    display: none; 
+  }
+
+  .menuIcon {
+    display: block; 
+  }
+}
+.mobileMenu {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: #fff;
+  padding: 20px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark .mobileMenu {
+  background: #1f1f1f;
+  color: #eaeaea;
+  box-shadow: 0px 5px 15px rgba(255,255,255,0.1);
+}
+.mobileMenu p {
+  font-size: 16px;
+  cursor: pointer;
+}
+.mobileMenu select {
+  padding: 8px;
+  background: inherit;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-left: 10px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.modeLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+.slider {
+  position: absolute;
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 30px;
+  transition: 0.3s ease;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+.switch input:checked + .slider {
+  background-color: #4caf50;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+body.dark .slider {
+  background-color: #555;
+}
+body.dark .switch input:checked + .slider {
+  background-color: #27ae60;
+}
+body.dark .slider:before {
+  background-color: #f1f1f1;
+}
+@media (max-width: 768px) {
+
+  /* Ensure toggle is visible in small screens */
+  .modeLabel {
+    font-size: 13px;
+  }
+
+  .switch {
+    width: 58px;  /* bigger tap size */
+    height: 30px;
+  }
+
+  .slider:before {
+    width: 26px;
+    height: 26px;
+  }
+
+  .switch input:checked + .slider:before {
+    transform: translateX(28px);
+  }
+  .mobileMenu .modeLabel,
+  .mobileMenu .switch {
+    margin-top: 10px;
+  }
+}
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (max-width: 768px) {
+  .toggleContainer {
+    margin-left: 0;
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+}
+
+

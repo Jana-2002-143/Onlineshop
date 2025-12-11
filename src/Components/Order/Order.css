@@ -1,0 +1,115 @@
+/* ---------- Container ---------- */
+.history-container {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 0;
+  background: var(--bg-color, #ffffff);
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* ---------- Inner Content ---------- */
+.history-content {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ---------- Title ---------- */
+.history-content h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* ---------- No Orders Message ---------- */
+.history-content p {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* ---------- Order Card ---------- */
+.history-card {
+  display: flex;
+  align-items: center;
+  background: #f7f7f7;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.history-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Card Image ---------- */
+.history-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 2px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+/* ---------- Info Section ---------- */
+.history-info h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.history-info p {
+  margin: 3px 0;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* ---------- Dark Mode ---------- */
+body.dark .history-container {
+  background: #121212;
+}
+
+body.dark .history-card {
+  background: #1e1e1e;
+  box-shadow: 0px 2px 6px rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+}
+
+body.dark .history-card img {
+  border-color: #444;
+}
+
+body.dark .history-info h3,
+body.dark .history-info p {
+  color: #eaeaea;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .history-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .history-card img {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 15px;
+  }
+
+  .history-info h3 {
+    font-size: 22px;
+  }
+
+  .history-info p {
+    font-size: 16px;
+  }
+}

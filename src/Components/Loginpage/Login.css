@@ -1,0 +1,140 @@
+/* Page layout */
+.loginform {
+  width: 100%;
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 0 15px;
+  text-align: left;
+}
+
+.loginform h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.loginform p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* Container */
+.Logincontainer {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Form labels */
+.Logincontainer label {
+  margin-top: 15px;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Inputs */
+.Logincontainer input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.Logincontainer input:focus {
+  border-color: #6c63ff;
+}
+
+/* Password Wrapper */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-wrapper span {
+  position: absolute;
+  right: 12px;
+  font-size: 20px;
+  color: #6f6f6f;
+  cursor: pointer;
+}
+
+/* Error message */
+.Logincontainer .inputempty {
+  display: block;
+  color: #e63946;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 3px;
+  padding-left: 2px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+/* Button */
+button {
+  width: 100%;
+  margin-top: 22px;
+  padding: 12px;
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+/* Signup redirect link */
+.login-extra {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.otherpage {
+  color: #6c63ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.otherpage:hover {
+  text-decoration: underline;
+}
+/* Forget Password Link */
+.forget-password {
+  display: block;
+  margin-top: 12px;
+  text-align: left;
+  font-size: 14px;
+  color: #6c63ff;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.forget-password:hover {
+  text-decoration: underline;
+}
+
