@@ -29,7 +29,7 @@ export default function Forget() {
     setLoading(true);
     setMsg("");
     try {
-      const res = await fetch("https://productbackend-oi15.onrender.com/api/forget", {
+      const res = await fetch("https://onlineproduct-backend.onrender.com/api/forget", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -55,7 +55,7 @@ export default function Forget() {
     setLoading(true);
     setMsg("");
     try {
-      const res = await fetch("https://productbackend-oi15.onrender.com/api/verifyotp", {
+      const res = await fetch("https://onlineproduct-backend.onrender.com/api/verifyotp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp: otpValue }),
@@ -82,7 +82,7 @@ export default function Forget() {
     setLoading(true);
     setMsg("");
     try {
-      const res = await fetch("https://productbackend-oi15.onrender.com/api/resetpassword", {
+      const res = await fetch("https://onlineproduct-backend.onrender.com/api/resetpassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

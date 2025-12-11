@@ -75,7 +75,7 @@ function Cart() {
 
     try {
       const response = await fetch(
-        "https://productbackend-oi15.onrender.com/api/order",
+        "https://onlineproduct-backend.onrender.com/api/order",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
