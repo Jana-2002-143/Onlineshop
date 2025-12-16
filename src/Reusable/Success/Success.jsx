@@ -1,6 +1,8 @@
 import "./Success.css";
+import { useNavigate } from "react-router-dom";
 
 function Success() {
+  const navigate=useNavigate();
   return (
     <div className="success-wrapper">
       <div className="success-card">
@@ -9,7 +11,7 @@ function Success() {
 
         <button
           className="home-btn"
-          onClick={() => (window.location.href = "/Homepage")}
+          onClick={() => (navigate("/Homepage"))}
         >
           Go to Home
         </button>

@@ -2,6 +2,7 @@ import Header from "../../Reusable/Header/Header";
 import { useEffect, useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import "./Cart.css";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -16,6 +17,7 @@ function Cart() {
     }));
     setCartItems(cartWithUniqueIds);
   }, []);
+  const navigate=useNavigate();
 
   const updateCart = (updatedCart) => {
     setCartItems(updatedCart);
@@ -86,7 +88,7 @@ function Cart() {
       if (response.ok) {
         const updatedCart = cartItems.filter((c) => c.id !== selectedItem.id);
         updateCart(updatedCart);
-        window.location.href = "/success";
+        navigate("/success");
       } else {
         const errorMsg = await response.text();
         alert("Payment Failed: " + errorMsg);
